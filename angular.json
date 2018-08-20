@@ -107,6 +107,19 @@
             "main": "src/main.server.ts",
             "tsConfig": "src/tsconfig.server.json"
           }
+        },
+        "app-shell": {
+          "builder": "@angular-devkit/build-angular:app-shell",
+          "options": {
+            "browserTarget": "donn:build",
+            "serverTarget": "donn:server",
+            "route": "shell"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "donn:build:production"
+            }
+          }
         }
       }
     },
