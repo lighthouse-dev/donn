@@ -13,7 +13,7 @@ export class AuthService {
    private router: Router
  ) {}
 
-  doLogin(value) {
+  login(value) {
     return new Promise<any>((resolve, reject) => {
       firebase.auth().signInWithEmailAndPassword(value.email, value.password)
       .then(res => {
@@ -22,7 +22,7 @@ export class AuthService {
     });
   }
 
-  doLogout() {
+  logout() {
     return new Promise((resolve, reject) => {
       if (firebase.auth().currentUser) {
         this.afAuth.auth.signOut();
