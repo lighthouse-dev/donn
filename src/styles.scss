@@ -4,5 +4,11 @@
 
 body {
   margin: 0 auto;
-  background-color: #eff0f1;
+  background-color: #ffffff;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
