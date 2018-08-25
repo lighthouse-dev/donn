@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
   <span class="example-fill-remaining-space"> Donn </span>
-  <span>
+  <span *ngIf="authService.uid">
     <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon> menu </mat-icon>
     </button>

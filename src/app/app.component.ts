@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from './core/auth.service';
 
 @Component({
@@ -11,9 +12,13 @@ export class AppComponent {
 
   constructor(
     public authService: AuthService,
+    private router: Router
   ) {}
 
   public logout() {
-    this.authService.logout();
+    this.authService.logout()
+    .then(res => {
+      this.router.navigate(['/login']);
+    });
   }
 }
