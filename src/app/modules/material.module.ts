@@ -11,8 +11,11 @@ import {
   MatGridListModule,
   MatDialogModule,
   MatProgressSpinnerModule,
-  MatMenuModule
+  MatMenuModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 } from '@angular/material';
+
 
 @NgModule({
   imports: [
@@ -27,7 +30,9 @@ import {
     MatGridListModule,
     MatDialogModule,
     MatProgressSpinnerModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   exports: [
     MatButtonModule,
@@ -41,7 +46,9 @@ import {
     MatGridListModule,
     MatDialogModule,
     MatProgressSpinnerModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
 })
 export class MaterialModule {}
