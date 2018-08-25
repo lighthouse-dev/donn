@@ -32,7 +32,7 @@ export class LoginComponent {
     this.authService.login(value)
     .then(res => {
       console.log(res);
-      this.router.navigate(['/user']);
+      this.router.navigate(['/spend']);
     }, err => {
       console.log(err);
       this.errorMessage = err.message;
