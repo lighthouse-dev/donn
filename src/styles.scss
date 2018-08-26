@@ -5,10 +5,31 @@
 body {
   margin: 0 auto;
   background-color: #ffffff;
+  font-family: 'Open Sans', 'Hiragino Kaku Gothic ProN', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif !important;
 }
 
 .center {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.textAlignRight {
+  text-align: right !important;
+}
+
+.borderRadius {
+  border-radius: 10px;
+}
+
+.error{
+  color: red;
+}
+
+.w-50 {
+  width: 50% !important;
+}
+
+h1, h2 {
+  color: #555555;
 }
