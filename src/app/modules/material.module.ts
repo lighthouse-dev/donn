@@ -13,7 +13,11 @@ import {
   MatProgressSpinnerModule,
   MatMenuModule,
   MatDatepickerModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatSelectModule,
+  MatRadioModule,
+  MatStepperModule,
+  MatSnackBarModule
 } from '@angular/material';
 
 
@@ -32,7 +36,11 @@ import {
     MatProgressSpinnerModule,
     MatMenuModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatStepperModule,
+    MatSnackBarModule
   ],
   exports: [
     MatButtonModule,
@@ -48,7 +56,11 @@ import {
     MatProgressSpinnerModule,
     MatMenuModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatStepperModule,
+    MatSnackBarModule
   ],
 })
 export class MaterialModule {}
