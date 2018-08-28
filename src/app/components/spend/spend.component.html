@@ -28,17 +28,14 @@
         label="カテゴリー"
         formGroupName="0"
         [stepControl]="spendArray.get([0])">
-        <mat-form-field appearance="outline">
-          <mat-label><mat-icon>category</mat-icon> カテゴリー </mat-label>
-          <mat-select formControlName="category">
-            <mat-option> -- 未選択 -- </mat-option>
-            <mat-option
-              *ngFor="let category of categories"
-              [value]="category.value"> {{ category.viewValue }}
-            </mat-option>
-          </mat-select>
-          <mat-error> カテゴリーを選択してください </mat-error>
-        </mat-form-field>
+        <mat-radio-group class="radio-group" formControlName="category">
+          <mat-radio-button
+            class="radio-button"
+            *ngFor="let category of categories"
+            [value]="category.value">
+            {{ category.viewValue }}
+          </mat-radio-button>
+        </mat-radio-group>
         <p>
           <button
             mat-stroked-button
