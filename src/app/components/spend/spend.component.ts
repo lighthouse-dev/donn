@@ -16,6 +16,10 @@ export class SpendComponent {
   get spendArray(): AbstractControl | null { return this.spendForm.get('spendArray'); }
 
   constructor(private fb: FormBuilder) {
+    this.createSpendForm();
+  }
+
+  createSpendForm() {
     this.spendForm = this.fb.group({
       spendArray: this.fb.array([
         this.fb.group({
@@ -32,6 +36,11 @@ export class SpendComponent {
 
   changeSpendType(val) {
     this.isPublic = val;
+
+    // Formをリセット
+    this.createSpendForm();
+
+    // PublicかPrivateかによって、カテゴリーリストを変える
     this.categories = this.isPublic ? Const.publicCategory : Const.privateCategory;
   }
 

@@ -7,3 +7,13 @@
 mat-form-field {
   width: 100%;
 }
+
+// Category Radio Button
+.radio-group {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.radio-button {
+  margin: 10px;
+}
