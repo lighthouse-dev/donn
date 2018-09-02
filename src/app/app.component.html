@@ -5,7 +5,9 @@
       <mat-icon> menu </mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="logout()"> Logout </button>
+      <button mat-menu-item [routerLink]="['/spend']"> 支出登録 </button>
+      <button mat-menu-item [routerLink]="['/spend-list']"> 支出一覧 </button>
+      <button mat-menu-item (click)="logout()"> ログアウト </button>
     </mat-menu>
   </span>
 </mat-toolbar>

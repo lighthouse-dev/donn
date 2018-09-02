@@ -31,6 +31,7 @@ import { SpendService } from './service/spend.service';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { SpendComponent } from './components/spend/spend.component';
+import { SpendListComponent } from './components/spend-list/spend-list.component';
 
 
 @NgModule({
@@ -38,7 +39,7 @@ import { SpendComponent } from './components/spend/spend.component';
     AppComponent,
     LoginComponent,
     SpendComponent,
-    SpendComponent
+    SpendListComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

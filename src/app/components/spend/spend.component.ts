@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { SpendService } from '../../service/spend.service';
 import { AuthService } from '../../core/auth.service';
@@ -21,7 +22,8 @@ export class SpendComponent {
   constructor(
     private fb: FormBuilder,
     private spendService: SpendService,
-    public authService: AuthService) {
+    public authService: AuthService,
+    private router: Router) {
     this.createSpendForm();
   }
 
@@ -63,6 +65,7 @@ export class SpendComponent {
     this.spendService.addSpend(this.spend, this.isPublic)
       .then(ref => {
         console.log(ref);
+        this.router.navigate(['/spend-list']);
         // todo:: 成功したら、メッセージを表示する (MatSnackBarModule)
       });
   }
