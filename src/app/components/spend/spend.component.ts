@@ -62,11 +62,18 @@ export class SpendComponent {
     };
     console.log(this.spend);
 
-    this.spendService.addSpend(this.spend, this.isPublic)
-      .then(ref => {
-        console.log(ref);
-        this.router.navigate(['/spend-list']);
-        // todo:: 成功したら、メッセージを表示する (MatSnackBarModule)
-      });
+    if (this.isPublic) {
+      this.spendService.addPublicSpend(this.spend)
+        .then(ref => {
+          this.router.navigate(['/spend-list']);
+          // todo:: 成功したら、メッセージを表示する (MatSnackBarModule)
+        });
+    } else {
+      this.spendService.addPrivateSpend(this.spend)
+        .then(ref => {
+          this.router.navigate(['/spend-private-list']);
+          // todo:: 成功したら、メッセージを表示する (MatSnackBarModule)
+        });
+    }
   }
 }
