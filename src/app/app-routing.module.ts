@@ -3,9 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 // Component
 import { LoginComponent } from './components/login/login.component';
-import { SpendComponent } from './components/spend/spend.component';
-import { SpendListComponent } from './components/spend-list/spend-list.component';
-import { SpendPrivateListComponent } from './components/spend-private-list/spend-private-list.component';
+import { SpendComponent } from './components/spend/add/spend.component';
+import { SpendListComponent } from './components/spend/list/public/spend-list.component';
+import { SpendPrivateListComponent } from './components/spend/list/private/spend-private-list.component';
 
 // Auth
 import { UserResolver } from './core/user.resolver';
