@@ -65,7 +65,7 @@ export class SpendComponent {
     if (this.isPublic) {
       this.spendService.addPublicSpend(this.spend)
         .then(ref => {
-          this.router.navigate(['/spend-list']);
+          this.router.navigate(['/spend-public-list']);
           // todo:: 成功したら、メッセージを表示する (MatSnackBarModule)
         });
     } else {

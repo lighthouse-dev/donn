@@ -32,7 +32,7 @@ import { CategoryPipe } from './shared/category.pipe';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { SpendComponent } from './components/spend/add/spend.component';
-import { SpendListComponent } from './components/spend/list/public/spend-list.component';
+import { SpendPublicListComponent } from './components/spend/list/public/spend-public-list.component';
 import { SpendPrivateListComponent } from './components/spend/list/private/spend-private-list.component';
 
 
@@ -41,7 +41,7 @@ import { SpendPrivateListComponent } from './components/spend/list/private/spend
     AppComponent,
     LoginComponent,
     SpendComponent,
-    SpendListComponent,
+    SpendPublicListComponent,
     SpendPrivateListComponent,
     CategoryPipe,
   ],
