@@ -26,11 +26,8 @@ export class SpendPrivateListComponent {
     data.snapshotChanges().subscribe(item => {
       this.spendList = [];
       this.resultsLength = item.length;
-      console.log(item);
 
-      item.reverse().forEach(element => {
-        console.log(element);
-
+      item.forEach(element => {
         const json = element.payload.toJSON();
         json['$key'] = element.key;
         this.spendList.push(json as Spend);

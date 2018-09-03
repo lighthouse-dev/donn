@@ -27,7 +27,7 @@ export class SpendListComponent {
       this.spendList = [];
       this.resultsLength = item.length;
 
-      item.reverse().forEach(element => {
+      item.forEach(element => {
         const json = element.payload.toJSON();
         json['$key'] = element.key;
         this.spendList.push(json as Spend);

@@ -6,7 +6,12 @@
   </mat-card-header>
 
   <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" matSort>
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      matSortActive="createDate"
+      matSortDirection="desc"
+      matSort>
       <ng-container matColumnDef="createDate">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> 日付 </th>
         <td mat-cell *matCellDef="let element"> {{ element.createDate | date:"MM/dd" }} </td>
