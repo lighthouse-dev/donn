@@ -26,12 +26,14 @@ import { UserResolver } from './core/user.resolver';
 
 // Service
 import { SpendService } from './service/spend.service';
+import { CategoryPipe } from './shared/category.pipe';
 
 // Component
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { SpendComponent } from './components/spend/spend.component';
 import { SpendListComponent } from './components/spend-list/spend-list.component';
+import { SpendPrivateListComponent } from './components/spend-private-list/spend-private-list.component';
 
 
 @NgModule({
@@ -39,7 +41,9 @@ import { SpendListComponent } from './components/spend-list/spend-list.component
     AppComponent,
     LoginComponent,
     SpendComponent,
-    SpendListComponent
+    SpendListComponent,
+    SpendPrivateListComponent,
+    CategoryPipe,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
