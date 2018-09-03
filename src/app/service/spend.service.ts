@@ -9,30 +9,32 @@ import { AuthService } from '../core/auth.service';
   providedIn: 'root'
 })
 export class SpendService {
-  private spendListRef;
+  private spendPublicListRef  = this.db.list<Spend>('public_spend', ref => ref.orderByChild('createDate'));
+  private spendPrivateListRef = this.db.list<Spend>('private_spend/' + this.authService.uid, ref => ref.orderByChild('createDate'));
 
   constructor(
     private db: AngularFireDatabase,
     public authService: AuthService
   ) { }
 
-  // コレクション名を指定
-  setDatabaseList(isPublic) {
-    if (isPublic) {
-      this.spendListRef = this.db.list<Spend>('public_spend');
-      return;
-    }
-    this.spendListRef = this.db.list<Spend>('private_spend');
+  // Add Public
+  addPublicSpend(spend: Spend) {
+    return this.spendPublicListRef.push(spend);
   }
 
-  // 支出データー取得
-  getSpendList(isPublic) {
-    return this.spendListRef = this.db.list<Spend>('public_spend');
+  // Add Private
+  addPrivateSpend(spend: Spend) {
+    return this.spendPrivateListRef.push(spend);
   }
 
-  // 支出登録
-  addSpend(spend: Spend, isPublic) {
-    this.setDatabaseList(isPublic);
-    return this.spendListRef.push(spend);
+  // Get Public
+  getPublicSpendList() {
+    return this.spendPublicListRef;
   }
+
+  // Get Private
+  getPrivateSpendList() {
+    return this.spendPrivateListRef;
+  }
+
 }
