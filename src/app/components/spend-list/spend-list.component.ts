@@ -21,13 +21,13 @@ export class SpendListComponent {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private spendService: SpendService) {
-    const data = this.spendService.getSpendList(true);
+    const data = this.spendService.getPublicSpendList();
 
     data.snapshotChanges().subscribe(item => {
       this.spendList = [];
       this.resultsLength = item.length;
 
-      item.forEach(element => {
+      item.reverse().forEach(element => {
         const json = element.payload.toJSON();
         json['$key'] = element.key;
         this.spendList.push(json as Spend);
