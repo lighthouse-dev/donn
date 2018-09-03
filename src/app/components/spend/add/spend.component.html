@@ -55,10 +55,10 @@
             matInput
             [matDatepicker]="date"
             formControlName="date"
-            placeholder="Date"
-            disabled>
+            placeholder="日付を選択してください"
+            readonly>
           <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
-          <mat-datepicker #date disabled="false"></mat-datepicker>
+          <mat-datepicker #date></mat-datepicker>
           <mat-error> 日付を選択してください </mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
@@ -68,15 +68,15 @@
             type="number"
             formControlName="amount"
             class="textAlignRight"
-            placeholder="Amount">
+            placeholder="金額を入力してください">
           <mat-error> 数字を入力してください </mat-error>
         </mat-form-field>
-        <mat-form-field appearance="outline">
+        <mat-form-field>
           <mat-label><mat-icon>create</mat-icon> メモ </mat-label>
           <textarea
             matInput
             formControlName="memo"
-            placeholder="Leave a comment">
+            placeholder="メモを入力してください">
           </textarea>
         </mat-form-field>
         <p>

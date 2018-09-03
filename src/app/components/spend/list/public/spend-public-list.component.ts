@@ -6,12 +6,11 @@ import { SpendService } from '../../../../service/spend.service';
 import { Spend } from '../../../../model/spend';
 
 @Component({
-  selector: 'app-spend-list',
-  templateUrl: './spend-list.component.html',
-  styleUrls: ['./spend-list.component.scss']
+  selector: 'app-spend-public-list',
+  templateUrl: './spend-public-list.component.html',
+  styleUrls: ['./spend-public-list.component.scss']
 })
-
-export class SpendListComponent {
+export class SpendPublicListComponent {
   displayedColumns: string[] = ['createDate', 'category', 'amount'];
   dataSource: MatTableDataSource<Spend>;
   spendList: Spend[];
@@ -27,7 +26,7 @@ export class SpendListComponent {
       this.spendList = [];
       this.resultsLength = item.length;
 
-      item.reverse().forEach(element => {
+      item.forEach(element => {
         const json = element.payload.toJSON();
         json['$key'] = element.key;
         this.spendList.push(json as Spend);
