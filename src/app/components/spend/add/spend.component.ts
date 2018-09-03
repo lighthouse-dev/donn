@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
-import { SpendService } from '../../service/spend.service';
-import { AuthService } from '../../core/auth.service';
-import { Spend } from '../../model/spend';
-import * as Const from '../../shared/data.service';
+import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { SpendService } from '../../../service/spend.service';
+import { AuthService } from '../../../core/auth.service';
+import { Spend } from '../../../model/spend';
+import * as Const from '../../../shared/data.service';
 
 @Component({
   selector: 'app-spend',
@@ -21,7 +22,8 @@ export class SpendComponent {
   constructor(
     private fb: FormBuilder,
     private spendService: SpendService,
-    public authService: AuthService) {
+    public authService: AuthService,
+    private router: Router) {
     this.createSpendForm();
   }
 
@@ -60,10 +62,18 @@ export class SpendComponent {
     };
     console.log(this.spend);
 
-    this.spendService.addSpend(this.spend, this.isPublic)
-      .then(ref => {
-        console.log(ref);
-        // todo:: 成功したら、メッセージを表示する (MatSnackBarModule)
-      });
+    if (this.isPublic) {
+      this.spendService.addPublicSpend(this.spend)
+        .then(ref => {
+          this.router.navigate(['/spend-list']);
+          // todo:: 成功したら、メッセージを表示する (MatSnackBarModule)
+        });
+    } else {
+      this.spendService.addPrivateSpend(this.spend)
+        .then(ref => {
+          this.router.navigate(['/spend-private-list']);
+          // todo:: 成功したら、メッセージを表示する (MatSnackBarModule)
+        });
+    }
   }
 }
