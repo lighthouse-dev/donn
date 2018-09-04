@@ -37,8 +37,8 @@ export class SpendComponent {
           category: ['', Validators.required ],
         }),
         this.fb.group({
-          date: ['', Validators.required ],
-          amount: ['', Validators.required ],
+          date: [ new Date(), Validators.required ],
+          amount: ['', [ Validators.required, Validators.min(1), Validators.max(999999999) ] ],
           memo: [''],
         }),
       ])
@@ -64,11 +64,10 @@ export class SpendComponent {
     this.spend = {
       uid: this.authService.uid,
       category: spend['spendArray']['0']['category'],
-      createDate: new Date( spend['spendArray']['1']['date'] ).toISOString(),
+      createDate: new Date( spend['spendArray']['1']['date'] ).toLocaleString(),
       amount: spend['spendArray']['1']['amount'],
       memo: spend['spendArray']['1']['memo']
     };
-    console.log(this.spend);
 
     // Save Public Spend
     if (this.isPublic) {
