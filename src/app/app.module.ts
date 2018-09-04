@@ -59,7 +59,13 @@ import { SpendPrivateListComponent } from './components/spend/list/private/spend
     AngularFireAuthModule,   // imports firebase/auth, only needed for auth features
     AngularFireDatabaseModule
   ],
-  providers: [AuthService, UserService, UserResolver, AuthGuard, SpendService],
+  providers: [
+    AuthService,
+    UserService,
+    UserResolver,
+    AuthGuard,
+    SpendService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
