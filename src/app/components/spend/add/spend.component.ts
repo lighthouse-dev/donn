@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { SpendService } from '../../../service/spend.service';
 import { AuthService } from '../../../core/auth.service';
 import { Spend } from '../../../model/spend';
@@ -16,6 +16,9 @@ export class SpendComponent {
   spendForm: FormGroup;
   categories = this.isPublic ? Const.publicCategory : Const.privateCategory;
   spend: Spend;
+  tabs = ['Public', 'Private'];
+  privateTapNum = 1;
+  selected = new FormControl(this.privateTapNum);
 
   get spendArray(): AbstractControl | null { return this.spendForm.get('spendArray'); }
 
@@ -42,14 +45,19 @@ export class SpendComponent {
     });
   }
 
-  changeSpendType(val) {
-    this.isPublic = val;
-
-    // Formをリセット
+  tabChanged = (tabChangeEvent: number): void => {
     this.createSpendForm();
 
-    // PublicかPrivateかによって、カテゴリーリストを変える
-    this.categories = this.isPublic ? Const.publicCategory : Const.privateCategory;
+    // Select PrivateTap
+    if (tabChangeEvent === this.privateTapNum) {
+      this.isPublic = false;
+      this.categories = Const.privateCategory;
+      return;
+    }
+
+    // Select PublicTap
+    this.isPublic = true;
+    this.categories = Const.publicCategory;
   }
 
   save(spend) {
@@ -62,18 +70,21 @@ export class SpendComponent {
     };
     console.log(this.spend);
 
+    // Save Public Spend
     if (this.isPublic) {
       this.spendService.addPublicSpend(this.spend)
         .then(ref => {
           this.router.navigate(['/spend-public-list']);
           // todo:: 成功したら、メッセージを表示する (MatSnackBarModule)
         });
-    } else {
-      this.spendService.addPrivateSpend(this.spend)
-        .then(ref => {
-          this.router.navigate(['/spend-private-list']);
-          // todo:: 成功したら、メッセージを表示する (MatSnackBarModule)
-        });
+      return;
     }
+
+    // Save Private Spend
+    this.spendService.addPrivateSpend(this.spend)
+      .then(ref => {
+        this.router.navigate(['/spend-private-list']);
+        // todo:: 成功したら、メッセージを表示する (MatSnackBarModule)
+      });
   }
 }

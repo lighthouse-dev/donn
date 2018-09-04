@@ -43,7 +43,7 @@ import { SpendPrivateListComponent } from './components/spend/list/private/spend
     SpendComponent,
     SpendPublicListComponent,
     SpendPrivateListComponent,
-    CategoryPipe,
+    CategoryPipe
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
