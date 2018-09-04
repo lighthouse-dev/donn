@@ -64,7 +64,7 @@ export class SpendComponent {
     this.spend = {
       uid: this.authService.uid,
       category: spend['spendArray']['0']['category'],
-      createDate: new Date( spend['spendArray']['1']['date'] ).toLocaleString(),
+      createDate: spend['spendArray']['1']['date'].toISOString(),
       amount: spend['spendArray']['1']['amount'],
       memo: spend['spendArray']['1']['memo']
     };
