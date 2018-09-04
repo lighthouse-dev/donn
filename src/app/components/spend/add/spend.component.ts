@@ -38,7 +38,7 @@ export class SpendComponent {
         }),
         this.fb.group({
           date: [ new Date(), Validators.required ],
-          amount: ['', Validators.required ],
+          amount: ['', [ Validators.required, Validators.min(1), Validators.max(999999999) ] ],
           memo: [''],
         }),
       ])
