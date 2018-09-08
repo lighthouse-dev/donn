@@ -69,20 +69,9 @@ export class SpendComponent {
       memo: spend['spendArray']['1']['memo']
     };
 
-    // Save Public Spend
-    if (this.isPublic) {
-      this.spendService.addPublicSpend(this.spend)
-        .then(ref => {
-          this.router.navigate(['/spend-public-list']);
-          // todo:: 成功したら、メッセージを表示する (MatSnackBarModule)
-        });
-      return;
-    }
-
-    // Save Private Spend
-    this.spendService.addPrivateSpend(this.spend)
+    this.spendService.addSpend(this.spend, this.isPublic)
       .then(ref => {
-        this.router.navigate(['/spend-private-list']);
+        this.router.navigate(['/spend-list'], { queryParams: { isPublic: this.isPublic } });
         // todo:: 成功したら、メッセージを表示する (MatSnackBarModule)
       });
   }

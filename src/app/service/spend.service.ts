@@ -17,13 +17,12 @@ export class SpendService {
     public authService: AuthService
   ) { }
 
-  // Add Public
-  addPublicSpend(spend: Spend) {
-    return this.spendPublicListRef.push(spend);
-  }
+  // Add Spend Data
+  addSpend(spend: Spend, isPublic: Boolean) {
+    if (isPublic) {
+      return this.spendPublicListRef.push(spend);
+    }
 
-  // Add Private
-  addPrivateSpend(spend: Spend) {
     return this.spendPrivateListRef.push(spend);
   }
 
