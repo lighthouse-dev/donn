@@ -36,6 +36,7 @@ import { LoginComponent } from './components/login/login.component';
 import { SpendComponent } from './components/spend/add/spend.component';
 import { SpendPublicListComponent } from './components/spend/list/public/spend-public-list.component';
 import { SpendPrivateListComponent } from './components/spend/list/private/spend-private-list.component';
+import { SpendListComponent } from './components/spend/list/spend-list.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { SpendPrivateListComponent } from './components/spend/list/private/spend
     SpendComponent,
     SpendPublicListComponent,
     SpendPrivateListComponent,
+    SpendListComponent,
     CategoryPipe
   ],
   imports: [
