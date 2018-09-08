@@ -6,8 +6,7 @@
     </button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item [routerLink]="['/spend']"> 入力 </button>
-      <button mat-menu-item [routerLink]="['/spend-public-list']"> 履歴（共通） </button>
-      <button mat-menu-item [routerLink]="['/spend-private-list']"> 履歴（個人） </button>
+      <button mat-menu-item [routerLink]="['/spend-list']"> 履歴 </button>
       <button mat-menu-item (click)="logout()"> ログアウト </button>
     </mat-menu>
   </span>
