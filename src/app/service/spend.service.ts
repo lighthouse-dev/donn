@@ -36,4 +36,11 @@ export class SpendService {
     return this.spendPrivateListRef;
   }
 
+  deleteSpend(deleteKey: any, isPublic: Boolean) {
+    if (isPublic) {
+      return this.db.list<Spend>('public_spend/' + deleteKey).remove();
+    }
+    return this.db.list<Spend>('private_spend/' + this.authService.uid + '/' + deleteKey).remove();
+  }
+
 }
