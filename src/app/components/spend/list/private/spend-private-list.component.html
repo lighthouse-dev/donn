@@ -8,12 +8,12 @@
       matSort>
       <ng-container matColumnDef="createDate">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> 日付 </th>
-        <td mat-cell *matCellDef="let element"> {{ element.createDate | date:"MM/dd" }} </td>
+        <td mat-cell *matCellDef="let element" (click)="openBottomSheet(element)"> {{ element.createDate | date:"MM/dd" }} </td>
       </ng-container>
 
       <ng-container matColumnDef="category">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> カテゴリー </th>
-        <td mat-cell *matCellDef="let element"> {{ element.category | category:false }} </td>
+        <td mat-cell *matCellDef="let element" (click)="openBottomSheet(element)"> {{ element.category | category:false }} </td>
       </ng-container>
 
       <ng-container matColumnDef="amount">
