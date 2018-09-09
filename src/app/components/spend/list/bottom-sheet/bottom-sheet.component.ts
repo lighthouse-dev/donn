@@ -29,12 +29,13 @@ export class BottomSheetComponent {
       data: this.spendData
     });
 
+    // bottomSheetを閉じる
+    this.bottomSheetRef.dismiss();
+
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.deleteSpend();
       }
-      // bottomSheetを閉じる
-      this.bottomSheetRef.dismiss();
     });
   }
 
