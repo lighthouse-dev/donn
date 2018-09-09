@@ -37,6 +37,9 @@ import { SpendComponent } from './components/spend/add/spend.component';
 import { SpendPublicListComponent } from './components/spend/list/public/spend-public-list.component';
 import { SpendPrivateListComponent } from './components/spend/list/private/spend-private-list.component';
 import { SpendListComponent } from './components/spend/list/spend-list.component';
+import { ShowSpendComponent } from './components/spend/show/show-spend.component';
+import { BottomSheetComponent } from './components/spend/list/bottom-sheet/bottom-sheet.component';
+import { DeleteSpendDialogComponent } from './components/spend/list/bottom-sheet/dialog/delete-spend-dialog.component';
 
 
 @NgModule({
@@ -47,7 +50,10 @@ import { SpendListComponent } from './components/spend/list/spend-list.component
     SpendPublicListComponent,
     SpendPrivateListComponent,
     SpendListComponent,
-    CategoryPipe
+    ShowSpendComponent,
+    BottomSheetComponent,
+    DeleteSpendDialogComponent,
+    CategoryPipe,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -72,6 +78,11 @@ import { SpendListComponent } from './components/spend/list/spend-list.component
     { provide: MAT_DATE_LOCALE, useValue: 'ja-JP' },
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
+  ],
+  entryComponents: [
+    ShowSpendComponent,
+    BottomSheetComponent,
+    DeleteSpendDialogComponent
   ],
   bootstrap: [AppComponent]
 })
