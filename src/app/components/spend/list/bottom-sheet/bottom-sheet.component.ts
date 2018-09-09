@@ -26,7 +26,7 @@ export class BottomSheetComponent {
   deleteAlertDialog() {
     // 削除確認のDialogを表示
     const dialogRef = this.dialog.open(DeleteSpendDialogComponent, {
-      data: {spend: this.spendData}
+      data: this.spendData
     });
 
     dialogRef.afterClosed().subscribe(result => {

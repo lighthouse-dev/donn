@@ -14,7 +14,7 @@ export class DeleteSpendDialogComponent {
     public dialogRef: MatDialogRef<DeleteSpendDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Spend
   ) {
-    this.spendData = data;
+    this.spendData = data['spend'];
   }
 
 }
