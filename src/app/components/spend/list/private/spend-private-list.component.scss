@@ -2,6 +2,17 @@
   display: flex;
   flex-direction: column;
   padding: 1.8rem 1.2rem;
+
+  .memo {
+    width: 1rem;
+
+  }
+
+  .action-cell {
+    .mat-icon {
+      color: #148ba8;
+    }
+  }
 }
 
 table {

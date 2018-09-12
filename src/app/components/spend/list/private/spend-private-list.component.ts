@@ -13,7 +13,7 @@ import { Spend } from '../../../../model/spend';
   styleUrls: ['./spend-private-list.component.scss']
 })
 export class SpendPrivateListComponent {
-  displayedColumns: string[] = ['createDate', 'category', 'amount'];
+  displayedColumns: string[] = ['createDate', 'category', 'amount', 'action'];
   dataSource: MatTableDataSource<Spend>;
   spendList: Spend[];
   resultsLength = 0;

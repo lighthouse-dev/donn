@@ -14,7 +14,7 @@ import { Spend } from '../../../../model/spend';
   styleUrls: ['./spend-public-list.component.scss']
 })
 export class SpendPublicListComponent {
-  displayedColumns: string[] = ['createDate', 'category', 'amount'];
+  displayedColumns: string[] = ['createDate', 'category', 'amount', 'action'];
   dataSource: MatTableDataSource<Spend>;
   spendList: Spend[];
   resultsLength = 0;
