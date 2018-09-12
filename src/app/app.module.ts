@@ -37,7 +37,7 @@ import { SpendComponent } from './components/spend/add/spend.component';
 import { SpendPublicListComponent } from './components/spend/list/public/spend-public-list.component';
 import { SpendPrivateListComponent } from './components/spend/list/private/spend-private-list.component';
 import { SpendListComponent } from './components/spend/list/spend-list.component';
-import { ShowSpendComponent } from './components/spend/show/show-spend.component';
+import { EditSpendComponent } from './components/spend/edit/edit-spend.component';
 import { BottomSheetComponent } from './components/spend/list/bottom-sheet/bottom-sheet.component';
 import { DeleteSpendDialogComponent } from './components/spend/list/bottom-sheet/dialog/delete-spend-dialog.component';
 
@@ -50,7 +50,7 @@ import { DeleteSpendDialogComponent } from './components/spend/list/bottom-sheet
     SpendPublicListComponent,
     SpendPrivateListComponent,
     SpendListComponent,
-    ShowSpendComponent,
+    EditSpendComponent,
     BottomSheetComponent,
     DeleteSpendDialogComponent,
     CategoryPipe,
@@ -80,7 +80,7 @@ import { DeleteSpendDialogComponent } from './components/spend/list/bottom-sheet
     { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
   ],
   entryComponents: [
-    ShowSpendComponent,
+    EditSpendComponent,
     BottomSheetComponent,
     DeleteSpendDialogComponent
   ],
