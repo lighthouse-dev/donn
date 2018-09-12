@@ -5,9 +5,15 @@
       <mat-icon> menu </mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item [routerLink]="['/spend']"> 入力 </button>
-      <button mat-menu-item [routerLink]="['/spend-list']"> 履歴 </button>
-      <button mat-menu-item (click)="logout()"> ログアウト </button>
+      <button mat-menu-item [routerLink]="['/spend']">
+        <mat-icon> attach_money </mat-icon> 入力
+      </button>
+      <button mat-menu-item [routerLink]="['/spend-list']">
+        <mat-icon> show_chart </mat-icon> 履歴
+      </button>
+      <button mat-menu-item (click)="logout()">
+        <mat-icon> subdirectory_arrow_right </mat-icon> ログアウト
+      </button>
     </mat-menu>
   </span>
 </mat-toolbar>
