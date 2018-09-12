@@ -5,6 +5,7 @@ import { MAT_BOTTOM_SHEET_DATA } from '@angular/material';
 import { Spend } from '../../../../model/spend';
 import { SpendService } from '../../../../service/spend.service';
 import { DeleteSpendDialogComponent } from './dialog/delete-spend-dialog.component';
+import { EditSpendComponent } from '../../edit/edit-spend.component';
 
 @Component({
   selector: 'app-bottom-sheet',
@@ -47,6 +48,15 @@ export class BottomSheetComponent {
     ).then(ref => {
       // todo:: 成功したら、メッセージを表示する (MatSnackBarModule)
     });
+  }
+
+  openEditForm() {
+    const dialogRef = this.dialog.open(EditSpendComponent, {
+      width: '75%',
+      data: this.spendData
+    });
+
+    this.bottomSheetRef.dismiss(); // bottomSheetを閉じる
   }
 
 }
