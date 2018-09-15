@@ -31,8 +31,13 @@ export class SpendService {
 
   // TODO: get~SpendList()を１つの関数にまとめる
   // Get Public
-  getPublicSpendList() {
-    return this.spendPublicListRef;
+  getPublicSpendList(searchDate = null) {
+    searchDate = (!searchDate) ? this.getSearchDate() : this.getSearchDate(searchDate);
+
+    return this.db.list<Spend>('public_spend',
+      ref => ref.orderByChild('createDate')
+                .startAt(searchDate.startAt)
+                .endAt(searchDate.endAt));
   }
 
   // Get Private

@@ -1,5 +1,25 @@
 <div class="spend-list-container">
   <div class="mat-elevation-z8">
+    <div class="month-info-wrap">
+      <mat-form-field class="month-info-form">
+        <input
+          matInput
+          [matDatepicker]="month"
+          [formControl]="searchMonth"
+          class="search-month"
+          readonly>
+        <mat-datepicker-toggle matSuffix [for]="month"></mat-datepicker-toggle>
+        <mat-datepicker
+          #month
+          touchUi
+          startView="year"
+          (monthSelected)="chosenMonthHandler($event, month)">
+        </mat-datepicker>
+      </mat-form-field>
+      <div class="total-amount">
+        <label> Total： {{ totalAmount | number }} </label>
+      </div>
+    </div>
     <table
       mat-table
       [dataSource]="dataSource"
@@ -32,6 +52,6 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
-    <mat-paginator [length]="resultsLength" [pageSize]="8"></mat-paginator>
+    <mat-paginator [length]="resultsLength" [pageSize]="7"></mat-paginator>
   </div>
 </div>
