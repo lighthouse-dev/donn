@@ -42,6 +42,7 @@ export class SpendPrivateListComponent {
   spendList: Spend[];
   resultsLength = 0;
   searchMonth = new FormControl(moment());
+  totalAmount: Number = 0;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -61,6 +62,7 @@ export class SpendPrivateListComponent {
       this.spendList = [];
       this.resultsLength = item.length;
 
+      this.totalAmount = 0;
       item.forEach(element => {
         const json = element.payload.toJSON();
         json['$key'] = element.key;
@@ -69,6 +71,8 @@ export class SpendPrivateListComponent {
 
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+
+        this.totalAmount += json['amount'];
       });
     });
   }

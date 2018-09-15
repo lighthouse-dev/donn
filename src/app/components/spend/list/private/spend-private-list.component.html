@@ -16,6 +16,9 @@
           (monthSelected)="chosenMonthHandler($event, month)">
         </mat-datepicker>
       </mat-form-field>
+      <div class="total-amount">
+        <label> Total： {{ totalAmount | number }} </label>
+      </div>
     </div>
     <table
       mat-table
