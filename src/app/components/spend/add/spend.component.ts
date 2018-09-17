@@ -75,4 +75,15 @@ export class SpendComponent {
         // todo:: 成功したら、メッセージを表示する (MatSnackBarModule)
       });
   }
+
+  /**
+   * nextStep
+   * カテゴリーを選択すると、次のステップに飛ばす
+   * @param stepper
+   */
+  nextStep(stepper) {
+    setTimeout(() => {
+      stepper.next();
+    }, 1);
+  }
 }

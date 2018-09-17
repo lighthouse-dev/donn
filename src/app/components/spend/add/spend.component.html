@@ -19,7 +19,8 @@
               <mat-radio-button
                 class="radio-button"
                 *ngFor="let category of categories"
-                [value]="category.value">
+                [value]="category.value"
+                (click)="nextStep(linearVerticalStepper)">
                 {{ category.viewValue }}
               </mat-radio-button>
             </mat-radio-group>
