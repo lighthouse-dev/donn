@@ -57,7 +57,9 @@
                 formControlName="amount"
                 class="textAlignRight"
                 placeholder="金額を入力してください">
-              <mat-error> 1以上の数字を入力してください </mat-error>
+              <mat-error>
+                <strong>数字のみ</strong>(1~9999999) 入力してください
+              </mat-error>
             </mat-form-field>
             <mat-form-field>
               <mat-label><mat-icon>create</mat-icon> メモ </mat-label>
