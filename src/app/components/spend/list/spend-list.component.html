@@ -1,10 +1,16 @@
 <mat-tab-group
   [selectedIndex]="selectedTab"
   backgroundColor="primary">
-  <mat-tab label="Public">
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon>home</mat-icon>　Public
+    </ng-template>
     <app-spend-public-list></app-spend-public-list>
   </mat-tab>
-  <mat-tab label="Private">
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon>face</mat-icon>　Private
+    </ng-template>
     <app-spend-private-list></app-spend-private-list>
   </mat-tab>
 </mat-tab-group>

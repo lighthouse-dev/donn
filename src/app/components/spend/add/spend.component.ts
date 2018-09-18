@@ -16,7 +16,10 @@ export class SpendComponent {
   spendForm: FormGroup;
   categories = this.isPublic ? Const.publicCategory : Const.privateCategory;
   spend: Spend;
-  tabs = ['Public', 'Private'];
+  tabs = [
+    { icon: 'home', label: 'Public' },
+    { icon: 'face', label: 'Private' }
+  ];
   privateTapNum = 1;
   selected = new FormControl(this.privateTapNum);
 

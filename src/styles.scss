@@ -36,6 +36,14 @@ h1, h2 {
 
 .mat-tab-labels .mat-tab-label {
   width: 50% !important;
+  opacity: .2;
+}
+
+.mat-tab-label-active {
+  color: #ffffff !important;
+  opacity: 1 !important;
+  font-weight: bold;
+  font-size: 1.1rem;
 }
 
 .mat-warn {

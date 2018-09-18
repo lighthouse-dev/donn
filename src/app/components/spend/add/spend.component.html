@@ -3,7 +3,10 @@
   (selectedIndexChange)="tabChanged($event)"
   backgroundColor="primary">
 
-  <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab">
+  <mat-tab *ngFor="let tab of tabs; let index = index">
+    <ng-template mat-tab-label>
+      <mat-icon>{{tab.icon}}</mat-icon>　{{tab.label}}
+    </ng-template>
     <div class="spend-container">
       <form [formGroup]="spendForm">
         <mat-vertical-stepper
