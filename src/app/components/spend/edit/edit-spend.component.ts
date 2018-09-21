@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { SpendService } from '../../../service/spend.service';
 import { AuthService } from '../../../core/auth.service';
 import { Spend } from '../../../model/spend';
+import { AlertMessageComponent } from '../../common/alert-message/alert-message.component';
 import * as Const from '../../../shared/data.service';
 
 @Component({
@@ -21,7 +22,8 @@ export class EditSpendComponent {
     public dialogRef: MatDialogRef<EditSpendComponent>,
     private fb: FormBuilder,
     private spendService: SpendService,
-    public authService: AuthService
+    public authService: AuthService,
+    private alertMessageComponent: AlertMessageComponent
   ) {
     this.spendData  = data;
     console.log(data);
@@ -47,7 +49,9 @@ export class EditSpendComponent {
     this.spendService.editSpend(this.spendData['spend']['$key'], editSpend, this.spendData['isPublic'])
       .then(ref => {
         this.dialogRef.close();
-        // todo:: 成功したら、メッセージを表示する (MatSnackBarModule)
+        this.alertMessageComponent.openSnackBar('支出を編集しました ✏️');
+      }).catch(ref => {
+        this.alertMessageComponent.openSnackBar('支出を編集できませんでした 😱');
       });
   }
 }

@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl } from
 import { SpendService } from '../../../service/spend.service';
 import { AuthService } from '../../../core/auth.service';
 import { Spend } from '../../../model/spend';
+import { AlertMessageComponent } from '../../common/alert-message/alert-message.component';
 import * as Const from '../../../shared/data.service';
 
 @Component({
@@ -29,7 +30,9 @@ export class SpendComponent {
     private fb: FormBuilder,
     private spendService: SpendService,
     public authService: AuthService,
-    private router: Router) {
+    private router: Router,
+    private alertMessageComponent: AlertMessageComponent
+  ) {
     this.createSpendForm();
   }
 
@@ -75,7 +78,7 @@ export class SpendComponent {
     this.spendService.addSpend(this.spend, this.isPublic)
       .then(ref => {
         this.router.navigate(['/spend-list'], { queryParams: { isPublic: this.isPublic } });
-        // todo:: 成功したら、メッセージを表示する (MatSnackBarModule)
+        this.alertMessageComponent.openSnackBar('支出を入力しました 💰');
       });
   }
 

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../core/auth.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AlertMessageComponent } from '../common/alert-message/alert-message.component';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent {
   constructor(
     public authService: AuthService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private alertMessageComponent: AlertMessageComponent
   ) {
     this.createForm();
   }
@@ -33,9 +35,11 @@ export class LoginComponent {
     .then(res => {
       console.log(res);
       this.router.navigate(['/spend']);
+      this.alertMessageComponent.openSnackBar('ログインに成功しました ✌️');
     }, err => {
       console.log(err);
       this.errorMessage = err.message;
+      this.alertMessageComponent.openSnackBar('ログインに失敗しました 😱');
     });
   }
 }

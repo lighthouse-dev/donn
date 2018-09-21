@@ -6,6 +6,7 @@ import { Spend } from '../../../../model/spend';
 import { SpendService } from '../../../../service/spend.service';
 import { DeleteSpendDialogComponent } from './dialog/delete-spend-dialog.component';
 import { EditSpendComponent } from '../../edit/edit-spend.component';
+import { AlertMessageComponent } from '../../../common/alert-message/alert-message.component';
 
 @Component({
   selector: 'app-bottom-sheet',
@@ -19,7 +20,8 @@ export class BottomSheetComponent {
     private bottomSheetRef: MatBottomSheetRef<BottomSheetComponent>,
     public dialog: MatDialog,
     private spendService: SpendService,
-    @Inject(MAT_BOTTOM_SHEET_DATA) public data: any
+    @Inject(MAT_BOTTOM_SHEET_DATA) public data: any,
+    private alertMessageComponent: AlertMessageComponent
   ) {
     this.spendData = data;
   }
@@ -46,12 +48,14 @@ export class BottomSheetComponent {
       this.spendData['spend']['$key'],
       this.spendData['isPublic']
     ).then(ref => {
-      // todo:: 成功したら、メッセージを表示する (MatSnackBarModule)
+      this.alertMessageComponent.openSnackBar('支出を削除しました 👀');
+    }).catch(ref => {
+      this.alertMessageComponent.openSnackBar('支出を削除できませんでした 😱');
     });
   }
 
   openEditForm() {
-    const dialogRef = this.dialog.open(EditSpendComponent, {
+    this.dialog.open(EditSpendComponent, {
       width: '75%',
       data: this.spendData
     });

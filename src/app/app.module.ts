@@ -40,6 +40,7 @@ import { SpendListComponent } from './components/spend/list/spend-list.component
 import { EditSpendComponent } from './components/spend/edit/edit-spend.component';
 import { BottomSheetComponent } from './components/spend/list/bottom-sheet/bottom-sheet.component';
 import { DeleteSpendDialogComponent } from './components/spend/list/bottom-sheet/dialog/delete-spend-dialog.component';
+import { AlertMessageComponent } from './components/common/alert-message/alert-message.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { DeleteSpendDialogComponent } from './components/spend/list/bottom-sheet
     BottomSheetComponent,
     DeleteSpendDialogComponent,
     CategoryPipe,
+    AlertMessageComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -75,6 +77,7 @@ import { DeleteSpendDialogComponent } from './components/spend/list/bottom-sheet
     UserResolver,
     AuthGuard,
     SpendService,
+    AlertMessageComponent,
     { provide: MAT_DATE_LOCALE, useValue: 'ja-JP' },
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
