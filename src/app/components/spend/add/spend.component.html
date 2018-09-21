@@ -33,7 +33,7 @@
                 color="primary"
                 matStepperNext
                 type="button"
-                [disabled]="spendArray.get([0]).invalid"> Next </button>
+                [disabled]="spendArray.get([0]).invalid"> 次へ </button>
             </p>
           </mat-step>
           <mat-step
@@ -81,9 +81,9 @@
                 mat-raised-button
                 color="primary"
                 [disabled]="spendArray.get([0]).invalid || spendArray.get([1]).invalid">
-                Save
+                登録
               </button>
-              <button mat-button matStepperPrevious type="button">Back</button>
+              <button mat-button matStepperPrevious type="button"> 戻る </button>
             </p>
           </mat-step>
         </mat-vertical-stepper>
