@@ -41,6 +41,7 @@ import { EditSpendComponent } from './components/spend/edit/edit-spend.component
 import { BottomSheetComponent } from './components/spend/list/bottom-sheet/bottom-sheet.component';
 import { DeleteSpendDialogComponent } from './components/spend/list/bottom-sheet/dialog/delete-spend-dialog.component';
 import { AlertMessageComponent } from './components/common/alert-message/alert-message.component';
+import { AggregateComponent } from './components/aggregate/aggregate.component';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { AlertMessageComponent } from './components/common/alert-message/alert-m
     DeleteSpendDialogComponent,
     CategoryPipe,
     AlertMessageComponent,
+    AggregateComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
