@@ -29,6 +29,7 @@ import { UserResolver } from './core/user.resolver';
 // Service
 import { SpendService } from './service/spend.service';
 import { CategoryPipe } from './shared/category.pipe';
+import { ComputeSumByCategoryPipe } from './shared/category.pipe';
 
 // Component
 import { AppComponent } from './app.component';
@@ -59,6 +60,7 @@ import { ShowCategoryComponent } from './components/aggregate/common/show-catego
     BottomSheetComponent,
     DeleteSpendDialogComponent,
     CategoryPipe,
+    ComputeSumByCategoryPipe,
     AlertMessageComponent,
     AggregateComponent,
     PublicAggregateComponent,

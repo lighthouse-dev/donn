@@ -10,3 +10,10 @@ export class CategoryPipe implements PipeTransform {
     return Const.PRIVATE_CATEGORY_LIST[categoryNum];
   }
 }
+
+@Pipe({ name: 'computeSumByCategory' })
+export class ComputeSumByCategoryPipe implements PipeTransform {
+  transform(categorySum: number, totalSum: number): number {
+    return Math.round(categorySum / totalSum * 100);
+  }
+}
