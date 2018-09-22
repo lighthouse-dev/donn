@@ -42,6 +42,9 @@ import { BottomSheetComponent } from './components/spend/list/bottom-sheet/botto
 import { DeleteSpendDialogComponent } from './components/spend/list/bottom-sheet/dialog/delete-spend-dialog.component';
 import { AlertMessageComponent } from './components/common/alert-message/alert-message.component';
 import { AggregateComponent } from './components/aggregate/aggregate.component';
+import { PublicAggregateComponent } from './components/aggregate/public/public-aggregate.component';
+import { PrivateAggregateComponent } from './components/aggregate/private/private-aggregate.component';
+import { ShowCategoryComponent } from './components/aggregate/common/show-category/show-category.component';
 
 
 @NgModule({
@@ -58,6 +61,9 @@ import { AggregateComponent } from './components/aggregate/aggregate.component';
     CategoryPipe,
     AlertMessageComponent,
     AggregateComponent,
+    PublicAggregateComponent,
+    PrivateAggregateComponent,
+    ShowCategoryComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
