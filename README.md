@@ -1,27 +1,15 @@
 # Donn
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.4.
+![icon-192x192](https://user-images.githubusercontent.com/33277426/45892904-7bbe0f00-be04-11e8-8780-940767b3dddb.png)
 
-## Development server
+「家庭内のお金を見える化する」 家計簿アプリ :tada: 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+<br>
 
-## Code scaffolding
+## Angular + Firebase + PWA 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- Angular: [Angular CLI](https://github.com/angular/angular-cli) version 6.1.4.
+- Angular Material: 6.4.5
+- Firebase
+  - リアルタイムデータベース
+  - Hosting
