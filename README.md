@@ -4,6 +4,7 @@
 
 「家庭内のお金を見える化する」 家計簿アプリ :tada: 
 
+<br>
 
 ## Angular + Firebase + PWA 
 
