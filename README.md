@@ -9,4 +9,6 @@
 
 - Angular: [Angular CLI](https://github.com/angular/angular-cli) version 6.1.4.
 - Angular Material: 6.4.5
-- Firebase: リアルタイムデータベース
+- Firebase
+  - リアルタイムデータベース
+  - Hosting
