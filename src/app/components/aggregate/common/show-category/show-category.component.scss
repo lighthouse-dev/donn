@@ -1,0 +1,21 @@
+.show-category-container {
+  padding: 1rem;
+
+  .mat-progress-bar.mat-primary {
+    height: 10px;
+    border-radius: 20px;
+  }
+
+  .category-sum {
+    float: right;
+  }
+
+  .category-row {
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
+
+    .category-name-line {
+      margin-bottom: 0.5rem;
+    }
+  }
+}

@@ -1,3 +1,17 @@
-<p>
-  show-category works!
-</p>
+<div class="show-category-container">
+  <p> Total: {{ totalAmount | number }} </p>
+  <mat-divider></mat-divider>
+
+  <div *ngFor="let sum of categorySum; let categoryNum=index">
+    <div *ngIf="sum >= 0" class="category-row">
+      <div class="category-name-line">
+        <label>
+          {{ categoryNum | category:true }}
+          ({{ sum | computeSumByCategory:totalAmount }}%)
+        </label>
+        <label class="category-sum"> ¥ {{ sum | number }} </label>
+      </div>
+      <mat-progress-bar mode="determinate" value="{{ sum | computeSumByCategory:totalAmount }}"></mat-progress-bar>
+    </div>
+  </div>
+</div>

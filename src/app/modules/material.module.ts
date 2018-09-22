@@ -24,7 +24,7 @@ import {
   MatTabsModule,
   MatTooltipModule,
   MatBottomSheetModule,
-  MatProgressBarModule
+  MatProgressBarModule,
 } from '@angular/material';
 
 
