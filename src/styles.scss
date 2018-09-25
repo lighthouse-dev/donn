@@ -53,3 +53,11 @@ h1, h2 {
 .mat-bottom-sheet-container {
   background-color: rgba( 255, 255, 255, 0.5 );
 }
+
+// ラジオボタンの色を変更
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  border-color: #009688;
+}
+.mat-radio-button.mat-accent .mat-radio-inner-circle {
+  background-color: #009688;
+}
