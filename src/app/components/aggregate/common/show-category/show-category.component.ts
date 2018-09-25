@@ -71,13 +71,17 @@ export class ShowCategoryComponent {
         return;
       }
 
+      // 初期化
+      this.totalAmount = 0;
+      this.categorySum = [];
+
       item.forEach(element => {
         const json = element.payload.toJSON();
         json['$key'] = element.key;
 
         // カテゴリー別合計を計算
-        if (typeof this.categorySum[json['category']] === 'undefined') { // 初期化
-          this.categorySum[json['category']] = 0;
+        if (typeof this.categorySum[json['category']] === 'undefined') {
+          this.categorySum[json['category']] = 0; // 初期化
         }
         this.categorySum[json['category']] += json['amount'];
 
