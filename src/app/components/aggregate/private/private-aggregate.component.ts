@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./private-aggregate.component.scss']
 })
 export class PrivateAggregateComponent implements OnInit {
+  isPublic: Boolean = false;
 
   constructor() { }
 

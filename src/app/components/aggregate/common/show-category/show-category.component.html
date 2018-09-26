@@ -30,7 +30,7 @@
       <div *ngIf="sum >= 0" class="category-row">
         <div class="category-name-line">
           <label>
-            {{ categoryNum | category:true }}
+            {{ categoryNum | category:isPublic }}
             ({{ sum | computeSumByCategory:totalAmount }}%)
           </label>
           <label class="category-sum"> ¥ {{ sum | number }} </label>

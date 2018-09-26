@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SpendService } from '../../../../service/spend.service';
 import { FormControl } from '@angular/forms';
 
@@ -30,24 +30,48 @@ export const MY_FORMATS = {
     {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
   ],
 })
-export class ShowCategoryComponent {
+export class ShowCategoryComponent implements OnInit {
+  @Input() isPublic: boolean;
   totalAmount: Number = 0;
   categorySum: any = [];
   searchMonth = new FormControl(moment());
 
-  constructor(private spendService: SpendService) {
-    this.getPublicSpendList();
+  constructor(private spendService: SpendService) { }
+
+  ngOnInit() {
+    // 共通
+    if (this.isPublic) {
+      this.getPublicSpendList();
+      return;
+    }
+
+    // 個人
+    this.getPrivateSpendList();
   }
 
   /**
    * getPublicSpendList
-   * 支出リストを取得
+   * 共通支出リストを取得
    *
    * @param searchMonth
    */
   getPublicSpendList(searchMonth = null) {
-    // 支出リストを取得
+    // 共通支出リストを取得
     const spendList = (searchMonth === null) ? this.spendService.getPublicSpendList() : this.spendService.getPublicSpendList(searchMonth);
+
+    // カテゴリー別合計、総合計を計算
+    this.computeSumByCategory(spendList);
+  }
+
+  /**
+   * getPrivateSpendList
+   * 個人支出リストを取得
+   *
+   * @param searchMonth
+   */
+  getPrivateSpendList(searchMonth = null) {
+    // 個人支出リストを取得
+    const spendList = (searchMonth === null) ? this.spendService.getPrivateSpendList() : this.spendService.getPrivateSpendList(searchMonth);
 
     // カテゴリー別合計、総合計を計算
     this.computeSumByCategory(spendList);
@@ -108,7 +132,11 @@ export class ShowCategoryComponent {
 
     this.searchMonth.setValue(ctrlValue);
 
-    this.getPublicSpendList(this.searchMonth.value);
+    if (this.isPublic) { // 共通
+      this.getPublicSpendList(this.searchMonth.value);
+    } else { // 個人
+      this.getPrivateSpendList(this.searchMonth.value);
+    }
 
     datepicker.close();
   }
