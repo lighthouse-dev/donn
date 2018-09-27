@@ -46,6 +46,7 @@ import { AggregateComponent } from './components/aggregate/aggregate.component';
 import { PublicAggregateComponent } from './components/aggregate/public/public-aggregate.component';
 import { PrivateAggregateComponent } from './components/aggregate/private/private-aggregate.component';
 import { ShowCategoryComponent } from './components/aggregate/common/show-category/show-category.component';
+import { SpendDialogByCategoryComponent } from './components/aggregate/common/spend-dialog-by-category/spend-dialog-by-category.component';
 
 
 @NgModule({
@@ -66,6 +67,7 @@ import { ShowCategoryComponent } from './components/aggregate/common/show-catego
     PublicAggregateComponent,
     PrivateAggregateComponent,
     ShowCategoryComponent,
+    SpendDialogByCategoryComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -95,7 +97,8 @@ import { ShowCategoryComponent } from './components/aggregate/common/show-catego
   entryComponents: [
     EditSpendComponent,
     BottomSheetComponent,
-    DeleteSpendDialogComponent
+    DeleteSpendDialogComponent,
+    SpendDialogByCategoryComponent
   ],
   bootstrap: [AppComponent]
 })
