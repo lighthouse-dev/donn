@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SpendService } from '../../../../service/spend.service';
 import { FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material';
+import { SpendDialogByCategoryComponent } from '../spend-dialog-by-category/spend-dialog-by-category.component';
 
 import { Moment } from 'moment';
 import { MatDatepicker } from '@angular/material/datepicker';
@@ -32,11 +34,15 @@ export const MY_FORMATS = {
 })
 export class ShowCategoryComponent implements OnInit {
   @Input() isPublic: boolean;
+  spendListByCategory = [];
   totalAmount: Number = 0;
   categorySum: any = [];
   searchMonth = new FormControl(moment());
 
-  constructor(private spendService: SpendService) { }
+  constructor(
+    private spendService: SpendService,
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit() {
     // 共通
@@ -111,6 +117,9 @@ export class ShowCategoryComponent implements OnInit {
 
         // 支出総合計を計算
         this.totalAmount += json['amount'];
+
+        // 出力リストを保持
+        (this.spendListByCategory[json['category']] = this.spendListByCategory[json['category']] || []).push(json);
       });
     });
   }
@@ -139,5 +148,23 @@ export class ShowCategoryComponent implements OnInit {
     }
 
     datepicker.close();
+  }
+
+  /**
+   * openHistoryByCategory
+   * カテゴリー別の支出リストDialogを表示
+   *
+   * @param categoryNum カテゴリーコード
+   */
+  openHistoryByCategory(categoryNum) {
+    // Dialogを表示
+    this.dialog.open(SpendDialogByCategoryComponent, {
+      width: '90%',
+      data: {
+        isPublic: this.isPublic,
+        categoryNum: categoryNum,
+        spendList: this.spendListByCategory[categoryNum]
+      }
+    });
   }
 }
