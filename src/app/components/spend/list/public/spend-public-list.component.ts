@@ -38,7 +38,7 @@ export const MY_FORMATS = {
   ],
 })
 export class SpendPublicListComponent {
-  displayedColumns: string[] = ['createDate', 'category', 'amount', 'action'];
+  displayedColumns: string[] = ['createDate', 'category', 'amount'];
   dataSource: MatTableDataSource<Spend>;
   spendList: Spend[];
   resultsLength = 0;

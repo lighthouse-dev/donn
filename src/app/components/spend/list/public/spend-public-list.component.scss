@@ -1,3 +1,12 @@
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
 .spend-list-container {
   display: flex;
   flex-direction: column;
@@ -37,22 +46,50 @@
     }
   }
 
-  .memo {
-    width: 1rem;
-  }
-
   .action-cell {
     .mat-icon {
       color: #148ba8;
     }
   }
-}
 
-table {
-  width: 100%;
-}
+  // Tabel header
+  .create-date-header {
+    width: 3.5rem;
+  }
+  .category-header {
+    width: 4.9rem;
+  }
 
-.mat-form-field {
-  font-size: 14px;
-  width: 100%;
+  // Tabel cell
+  .create-date-cell {
+    padding: 0 0.7rem !important;
+  }
+  .category-cell {
+    padding: 0 0.2rem;
+  }
+  .amount-cell {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  // 日付ラベル
+  .create-label {
+    border-radius: 20px;
+    padding: 0.3rem 0.7rem;
+    background-color: lightcoral;
+    color: #ffffff;
+  }
+
+  // 金額
+  .amount {
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  // メモ
+  .memo {
+    font-size: 0.7rem;
+    margin-top: 5px;
+    color: #555555;
+  }
 }
