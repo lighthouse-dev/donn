@@ -4,9 +4,10 @@ import { Category } from '../model/category';
 const PUBLIC_CATEGORY_FOOD              = 10;
 const PUBLIC_CATEGORY_DAILY_NECESSITIES = 11;
 const PUBLIC_CATEGORY_RELATIINSHIP      = 12;
-const PUBLIC_CATEGORY_HOBBY             = 13;
+const PUBLIC_CATEGORY_TRAVEL            = 13;
 const PUBLIC_CATEGORY_HOUSE             = 14;
 const PUBLIC_CATEGORY_DINE_OUT          = 15;
+const PUBLIC_CATEGORY_HOBBY             = 16;
 const PUBLIC_CATEGORY_ETC               = 19;
 
 // Private Cost
@@ -19,9 +20,10 @@ export const PUBLIC_CATEGORY_LIST = {
   [PUBLIC_CATEGORY_FOOD]: '食費',
   [PUBLIC_CATEGORY_DAILY_NECESSITIES]: '日用品',
   [PUBLIC_CATEGORY_RELATIINSHIP]: '交際',
-  [PUBLIC_CATEGORY_HOBBY]: '旅行・本・趣味',
+  [PUBLIC_CATEGORY_TRAVEL]: '旅行',
   [PUBLIC_CATEGORY_HOUSE]: '住まい',
   [PUBLIC_CATEGORY_DINE_OUT]: '外食',
+  [PUBLIC_CATEGORY_HOBBY]: '本・趣味',
   [PUBLIC_CATEGORY_ETC]: 'その他'
 };
 
@@ -39,6 +41,7 @@ export const publicCategory: Category[] = [
   { value: PUBLIC_CATEGORY_RELATIINSHIP,      viewValue: PUBLIC_CATEGORY_LIST[PUBLIC_CATEGORY_RELATIINSHIP] },
   { value: PUBLIC_CATEGORY_HOBBY,             viewValue: PUBLIC_CATEGORY_LIST[PUBLIC_CATEGORY_HOBBY] },
   { value: PUBLIC_CATEGORY_HOUSE,             viewValue: PUBLIC_CATEGORY_LIST[PUBLIC_CATEGORY_HOUSE] },
+  { value: PUBLIC_CATEGORY_TRAVEL,            viewValue: PUBLIC_CATEGORY_LIST[PUBLIC_CATEGORY_TRAVEL] },
   { value: PUBLIC_CATEGORY_ETC,               viewValue: PUBLIC_CATEGORY_LIST[PUBLIC_CATEGORY_ETC] },
 ];
 
