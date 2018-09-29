@@ -91,8 +91,9 @@ export class ShowCategoryComponent implements OnInit {
    */
   computeSumByCategory(spendList) {
     // 初期化（月を変えた時に、リセットする必要があるため）
-    this.categorySum = [];
     this.totalAmount = 0;
+    this.categorySum = [];
+    this.spendListByCategory = [];
 
     spendList.snapshotChanges().subscribe(item => {
       // 該当の月のデータが存在しない場合
