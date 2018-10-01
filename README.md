@@ -13,3 +13,9 @@
 - Firebase
   - リアルタイムデータベース
   - Hosting
+
+### Other use library
+- angularfire2：5.0.0
+- moment.js：2.22.2
+- chart.js：2.7.2
+- chartjs-plugin-datalabels：0.4.0
