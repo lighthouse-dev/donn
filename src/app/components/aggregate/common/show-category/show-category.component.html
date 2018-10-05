@@ -26,6 +26,7 @@
   </div>
 
   <ng-template #showCategorySum>
+    <canvas #canvas></canvas>
     <div *ngFor="let sum of categorySum; let categoryNum=index">
       <div
         *ngIf="sum >= 0"

@@ -1,8 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef  } from '@angular/core';
 import { SpendService } from '../../../../service/spend.service';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { SpendDialogByCategoryComponent } from '../spend-dialog-by-category/spend-dialog-by-category.component';
+import * as Const from '../../../../shared/data.service';
+
+// Chart.js
+import { Chart, ChartData, ChartOptions } from 'chart.js';
+import 'chartjs-plugin-datalabels';
 
 import { Moment } from 'moment';
 import { MatDatepicker } from '@angular/material/datepicker';
@@ -34,6 +39,13 @@ export const MY_FORMATS = {
 })
 export class ShowCategoryComponent implements OnInit {
   @Input() isPublic: boolean;
+  @ViewChild('canvas')
+  ref: ElementRef;
+  chartData: ChartData;
+  options: ChartOptions;
+  context: CanvasRenderingContext2D;
+  chart: Chart;
+
   spendListByCategory = [];
   totalAmount: Number = 0;
   categorySum: any = [];
@@ -122,6 +134,9 @@ export class ShowCategoryComponent implements OnInit {
         // 出力リストを保持
         (this.spendListByCategory[json['category']] = this.spendListByCategory[json['category']] || []).push(json);
       });
+
+      // Chartをセット
+      this.setChartByCategory();
     });
   }
 
@@ -166,6 +181,84 @@ export class ShowCategoryComponent implements OnInit {
         categoryNum: categoryNum,
         spendList: this.spendListByCategory[categoryNum]
       }
+    });
+  }
+
+  /**
+   * setChartByCategory
+   * Chartを作成
+   */
+  setChartByCategory() {
+    const categoryLabel = [];
+    const categoryData  = [];
+    const categoryList  = (this.isPublic) ? Const.PUBLIC_CATEGORY_LIST : Const.PRIVATE_CATEGORY_LIST;
+
+    // Chart出力に合わせてデータを加工
+    this.categorySum.forEach( (value, key) => {
+      categoryLabel.push(categoryList[key]);
+      categoryData.push(value);
+    });
+
+    // Chartにデータ、オプションを指定
+    this.chartData = {
+      labels: categoryLabel,
+      datasets: [{
+        data: categoryData,
+        backgroundColor: [
+          '#4BC0C0',
+          '#36A2EB',
+          '#FFCD56',
+          '#FF6384',
+          '#4FBEDA',
+          '#E23051',
+          '#252C3F',
+          '#ED553B',
+        ],
+        borderWidth: 2,
+        borderColor: '#fff'
+      }]
+    };
+
+    this.context = this.ref.nativeElement.getContext('2d');
+    this.options = {
+      animation: {
+        duration: 0
+      },
+      hover: {
+        animationDuration: 0
+      },
+      responsiveAnimationDuration: 0,
+      legend: {
+        display: true,
+        position: 'right',
+        labels: {
+          fontColor: 'blue'
+        }
+      },
+      tooltips: {
+        enabled: false
+      },
+      plugins: {
+        datalabels: {
+          formatter: (value, ctx) => {
+            let sum = 0;
+            const dataArr = ctx.chart.data.datasets[0].data;
+            dataArr.map(data => {
+              sum += data;
+            });
+            const percentage = (value * 100 / sum).toFixed(0) + '%';
+            return percentage;
+          },
+          color: '#fff',
+        }
+      }
+    };
+
+    // チャートの作成
+    this.chart = new Chart(this.context, {
+      type: 'doughnut',
+      data: this.chartData, // データをプロパティとして渡す
+      options: this.options // オプションをプロパティとして渡す
     });
   }
 }
