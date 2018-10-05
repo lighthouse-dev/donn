@@ -47,7 +47,6 @@ import { PublicAggregateComponent } from './components/aggregate/public/public-a
 import { PrivateAggregateComponent } from './components/aggregate/private/private-aggregate.component';
 import { ShowCategoryComponent } from './components/aggregate/common/show-category/show-category.component';
 import { SpendDialogByCategoryComponent } from './components/aggregate/common/spend-dialog-by-category/spend-dialog-by-category.component';
-import { ShowChartByCategoryComponent } from './components/aggregate/common/show-category/show-chart-by-category/show-chart-by-category.component';
 
 
 @NgModule({
@@ -68,8 +67,7 @@ import { ShowChartByCategoryComponent } from './components/aggregate/common/show
     PublicAggregateComponent,
     PrivateAggregateComponent,
     ShowCategoryComponent,
-    SpendDialogByCategoryComponent,
-    ShowChartByCategoryComponent,
+    SpendDialogByCategoryComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
