@@ -14,11 +14,12 @@ import { MaterialModule } from './modules/material.module';
 import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 
-// Firebase Module
+// Firebase
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { MessagingService } from './service/messaging.service';
 
 // Auth
 import { AuthGuard } from './core/auth.guard';
@@ -89,6 +90,7 @@ import { SpendDialogByCategoryComponent } from './components/aggregate/common/sp
     UserResolver,
     AuthGuard,
     SpendService,
+    MessagingService,
     AlertMessageComponent,
     { provide: MAT_DATE_LOCALE, useValue: 'ja-JP' },
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
