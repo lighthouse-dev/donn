@@ -42,3 +42,5 @@ Thumbs.db
 .firebaserc
 firebase.json
 *.firebase
+/functions/node_modules
+/functions/lib
