@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SpendPublicListComponent } from './spend-public-list.component';
+import { SpendTableComponent } from './spend-table.component';
 
-describe('SpendListComponent', () => {
-  let component: SpendPublicListComponent;
-  let fixture: ComponentFixture<SpendPublicListComponent>;
+describe('SpendTableComponent', () => {
+  let component: SpendTableComponent;
+  let fixture: ComponentFixture<SpendTableComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SpendPublicListComponent ]
+      declarations: [ SpendTableComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SpendPublicListComponent);
+    fixture = TestBed.createComponent(SpendTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -32,8 +32,6 @@ import { ComputeSumByCategoryPipe } from './shared/category.pipe';
 
 // Component
 import { AppComponent } from './app.component';
-import { SpendPublicListComponent } from './components/spend/list/public/spend-public-list.component';
-import { SpendPrivateListComponent } from './components/spend/list/private/spend-private-list.component';
 import { SpendListComponent } from './components/spend/list/spend-list.component';
 import { SpendTableComponent } from './components/spend/list/common/spend-table/spend-table.component';
 import { EditSpendComponent } from './components/spend/edit/edit-spend.component';
@@ -52,8 +50,6 @@ import { AppRoutingModule } from './app-routing.module';
 @NgModule({
   declarations: [
     AppComponent,
-    SpendPublicListComponent,
-    SpendPrivateListComponent,
     SpendListComponent,
     SpendTableComponent,
     EditSpendComponent,
