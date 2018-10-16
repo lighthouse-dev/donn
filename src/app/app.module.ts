@@ -2,11 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { AppRoutingModule } from './app-routing.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { RouterModule } from '@angular/router';
-import { routes } from './app-routing.module';
 
 // Module
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -34,11 +32,10 @@ import { ComputeSumByCategoryPipe } from './shared/category.pipe';
 
 // Component
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
-import { SpendComponent } from './components/spend/add/spend.component';
 import { SpendPublicListComponent } from './components/spend/list/public/spend-public-list.component';
 import { SpendPrivateListComponent } from './components/spend/list/private/spend-private-list.component';
 import { SpendListComponent } from './components/spend/list/spend-list.component';
+import { SpendTableComponent } from './components/spend/list/common/spend-table/spend-table.component';
 import { EditSpendComponent } from './components/spend/edit/edit-spend.component';
 import { BottomSheetComponent } from './components/spend/list/bottom-sheet/bottom-sheet.component';
 import { DeleteSpendDialogComponent } from './components/spend/list/bottom-sheet/dialog/delete-spend-dialog.component';
@@ -49,15 +46,16 @@ import { PrivateAggregateComponent } from './components/aggregate/private/privat
 import { ShowCategoryComponent } from './components/aggregate/common/show-category/show-category.component';
 import { SpendDialogByCategoryComponent } from './components/aggregate/common/spend-dialog-by-category/spend-dialog-by-category.component';
 
+// Routing
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    SpendComponent,
     SpendPublicListComponent,
     SpendPrivateListComponent,
     SpendListComponent,
+    SpendTableComponent,
     EditSpendComponent,
     BottomSheetComponent,
     DeleteSpendDialogComponent,
@@ -72,17 +70,16 @@ import { SpendDialogByCategoryComponent } from './components/aggregate/common/sp
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
-    AppRoutingModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     RouterModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     BrowserAnimationsModule,
     MaterialModule,
-    RouterModule.forRoot(routes, { useHash: false }),
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule,   // imports firebase/auth, only needed for auth features
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    AppRoutingModule
   ],
   providers: [
     AuthService,
