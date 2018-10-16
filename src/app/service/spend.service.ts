@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Spend } from '../model/spend';
+import store from '../store/spendType';
 
 // Service
 import { AuthService } from '../core/auth.service';
@@ -20,12 +21,21 @@ export class SpendService {
     public authService: AuthService
   ) { }
 
-  // Add Spend Data
-  addSpend(spend: Spend, isPublic: Boolean) {
-    if (isPublic) {
+  /**
+   * addSpend
+   * 支出データを登録
+   *
+   * @param {Spend} spend
+   * @returns
+   * @memberof SpendService
+   */
+  addSpend(spend: Spend) {
+    // Public
+    if (store.isPublic) {
       return this.spendPublicListRef.push(spend);
     }
 
+    // Private
     return this.spendPrivateListRef.push(spend);
   }
 
@@ -50,8 +60,40 @@ export class SpendService {
                 .endAt(searchDate.endAt));
   }
 
-  deleteSpend(deleteKey: any, isPublic: Boolean) {
-    if (isPublic) {
+  /**
+   * getSpendList
+   * 支出リストを取得
+   *
+   * @param searchDate 検索月
+   */
+  getSpendList(searchDate = null) {
+    searchDate = (!searchDate) ? this.getSearchDate() : this.getSearchDate(searchDate);
+
+    // Public
+    if (store.isPublic) {
+      return this.db.list<Spend>('public_spend',
+        ref => ref.orderByChild('createDate')
+                  .startAt(searchDate.startAt)
+                  .endAt(searchDate.endAt));
+    }
+
+    // Private
+    return this.db.list<Spend>('private_spend/' + this.authService.uid,
+      ref => ref.orderByChild('createDate')
+                .startAt(searchDate.startAt)
+                .endAt(searchDate.endAt));
+  }
+
+  /**
+   * deleteSpend
+   * 支出データを削除
+   *
+   * @param {*} deleteKey
+   * @returns
+   * @memberof SpendService
+   */
+  deleteSpend(deleteKey: any) {
+    if (store.isPublic) {
       return this.db.list<Spend>('public_spend/' + deleteKey).remove();
     }
     return this.db.list<Spend>('private_spend/' + this.authService.uid + '/' + deleteKey).remove();
@@ -65,10 +107,9 @@ export class SpendService {
    *
    * @param editKey
    * @param spend
-   * @param isPublic
    */
-  editSpend(editKey: any, spend: Spend, isPublic: Boolean) {
-    if (isPublic) {
+  editSpend(editKey: any, spend: Spend) {
+    if (store.isPublic) {
       return this.db.list<Spend>('public_spend/').update(editKey, spend);
     }
     return this.db.list<Spend>('private_spend/' + this.authService.uid).update(editKey, spend);

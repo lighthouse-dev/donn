@@ -5,6 +5,7 @@ import { SpendService } from '../../../service/spend.service';
 import { AuthService } from '../../../core/auth.service';
 import { Spend } from '../../../model/spend';
 import { AlertMessageComponent } from '../../common/alert-message/alert-message.component';
+import store from '../../../store/spendType';
 import * as Const from '../../../shared/data.service';
 
 @Component({
@@ -13,16 +14,14 @@ import * as Const from '../../../shared/data.service';
   styleUrls: ['./spend.component.scss']
 })
 export class SpendComponent {
-  isPublic: Boolean = false;
   spendForm: FormGroup;
-  categories = this.isPublic ? Const.publicCategory : Const.privateCategory;
   spend: Spend;
   tabs = [
     { icon: 'home', label: 'Public' },
     { icon: 'face', label: 'Private' }
   ];
-  privateTapNum = 1;
-  selected = new FormControl(this.privateTapNum);
+  selected    = new FormControl(store.privateTapNum);
+  categories  = store.isPublic ? Const.publicCategory : Const.privateCategory;
 
   get spendArray(): AbstractControl | null { return this.spendForm.get('spendArray'); }
 
@@ -33,6 +32,10 @@ export class SpendComponent {
     private router: Router,
     private alertMessageComponent: AlertMessageComponent
   ) {
+    // 初期表示Tabを「Private」にする
+    store.setPrivateSpendType();
+
+    // Form初期化
     this.createSpendForm();
   }
 
@@ -55,14 +58,14 @@ export class SpendComponent {
     this.createSpendForm();
 
     // Select PrivateTap
-    if (tabChangeEvent === this.privateTapNum) {
-      this.isPublic = false;
+    if (tabChangeEvent === store.privateTapNum) {
+      store.setPrivateSpendType();
       this.categories = Const.privateCategory;
       return;
     }
 
     // Select PublicTap
-    this.isPublic = true;
+    store.setPublicSpendType();
     this.categories = Const.publicCategory;
   }
 
@@ -75,9 +78,9 @@ export class SpendComponent {
       memo: spend['spendArray']['1']['memo']
     };
 
-    this.spendService.addSpend(this.spend, this.isPublic)
+    this.spendService.addSpend(this.spend)
       .then(ref => {
-        this.router.navigate(['/spend-list'], { queryParams: { isPublic: this.isPublic } });
+        this.router.navigate(['/spend-list']);
         this.alertMessageComponent.openSnackBar('支出を入力しました 💰');
       });
   }

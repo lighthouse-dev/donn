@@ -44,14 +44,12 @@ export class BottomSheetComponent {
 
   // 削除処理
   deleteSpend() {
-    this.spendService.deleteSpend(
-      this.spendData['spend']['$key'],
-      this.spendData['isPublic']
-    ).then(ref => {
-      this.alertMessageComponent.openSnackBar('支出を削除しました 👀');
-    }).catch(ref => {
-      this.alertMessageComponent.openSnackBar('支出を削除できませんでした 😱');
-    });
+    this.spendService.deleteSpend(this.spendData['$key'])
+      .then(ref => {
+        this.alertMessageComponent.openSnackBar('支出を削除しました 👀');
+      }).catch(ref => {
+        this.alertMessageComponent.openSnackBar('支出を削除できませんでした 😱');
+      });
   }
 
   openEditForm() {
