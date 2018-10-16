@@ -5,6 +5,7 @@ import { SpendService } from '../../../service/spend.service';
 import { AuthService } from '../../../core/auth.service';
 import { Spend } from '../../../model/spend';
 import { AlertMessageComponent } from '../../common/alert-message/alert-message.component';
+import store from '../../../store/spendType';
 import * as Const from '../../../shared/data.service';
 
 @Component({
@@ -26,14 +27,14 @@ export class EditSpendComponent {
     private alertMessageComponent: AlertMessageComponent
   ) {
     this.spendData  = data;
-    console.log(data);
 
-    this.categories = this.spendData['isPublic'] ? Const.publicCategory : Const.privateCategory;
+    this.categories = store.isPublic ? Const.publicCategory : Const.privateCategory;
+
     this.spendForm  = this.fb.group({
-      category: [ this.spendData['spend']['category'], Validators.required ],
-      date: [ new Date(this.spendData['spend']['createDate']), Validators.required ],
-      amount: [ this.spendData['spend']['amount'], Validators.required ],
-      memo: [ this.spendData['spend']['memo'] ]
+      category: [ this.spendData['category'], Validators.required ],
+      date: [ new Date(this.spendData['createDate']), Validators.required ],
+      amount: [ this.spendData['amount'], Validators.required ],
+      memo: [ this.spendData['memo'] ]
     });
   }
 
@@ -46,7 +47,7 @@ export class EditSpendComponent {
       memo: spend['memo']
     };
 
-    this.spendService.editSpend(this.spendData['spend']['$key'], editSpend, this.spendData['isPublic'])
+    this.spendService.editSpend(this.spendData['$key'], editSpend)
       .then(ref => {
         this.dialogRef.close();
         this.alertMessageComponent.openSnackBar('支出を編集しました ✏️');

@@ -1,16 +1,51 @@
 <mat-tab-group
   [selectedIndex]="selectedTab"
-  backgroundColor="primary">
-  <mat-tab>
+  (selectedIndexChange)="tabChanged($event)"
+  backgroundColor="primary"
+>
+  <mat-tab *ngFor="let tab of tabs; let index = index">
     <ng-template mat-tab-label>
-      <mat-icon>home</mat-icon>　Public
+      <mat-icon>{{tab.icon}}</mat-icon>　{{tab.label}}
     </ng-template>
-    <app-spend-public-list></app-spend-public-list>
-  </mat-tab>
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-icon>face</mat-icon>　Private
-    </ng-template>
-    <app-spend-private-list></app-spend-private-list>
+    <div class="spend-list-container">
+      <div class="mat-elevation-z8">
+        <div class="month-info-wrap">
+          <mat-form-field class="month-info-form">
+            <input
+              matInput
+              [matDatepicker]="month"
+              [formControl]="searchMonth"
+              class="search-month"
+              readonly
+            >
+            <mat-datepicker-toggle matSuffix [for]="month"></mat-datepicker-toggle>
+            <mat-datepicker
+              #month
+              touchUi
+              startView="year"
+              (monthSelected)="chosenMonthHandler($event, month)"
+            ></mat-datepicker>
+          </mat-form-field>
+          <div class="total-amount">
+            <label> Total： {{ totalAmount | number }} </label>
+          </div>
+        </div>
+
+        <ng-container *ngIf="storeObj.isPublic; else privateTableTemplate">
+          <app-spend-table
+            *ngIf="spendPublicList"
+            [spendList]="spendPublicList"
+            (openBottomSheetEvent)="openBottomSheet($event)"
+          ></app-spend-table>
+        </ng-container>
+        <ng-template #privateTableTemplate>
+          <app-spend-table
+            *ngIf="spendPrivateList"
+            [spendList]="spendPrivateList"
+            (openBottomSheetEvent)="openBottomSheet($event)"
+          ></app-spend-table>
+        </ng-template>
+      </div>
+    </div>
   </mat-tab>
 </mat-tab-group>
