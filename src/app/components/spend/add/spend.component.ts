@@ -58,7 +58,7 @@ export class SpendComponent {
     this.createSpendForm();
 
     // Select PrivateTap
-    if (tabChangeEvent === this.privateTapNum) {
+    if (tabChangeEvent === store.privateTapNum) {
       store.setPrivateSpendType();
       this.categories = Const.privateCategory;
       return;
