@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort } from '@angular/material';
 import { MatBottomSheet } from '@angular/material';
 import { FormControl } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 import { Moment } from 'moment';
 import { MatDatepicker } from '@angular/material/datepicker';
@@ -13,6 +14,7 @@ import { SpendService } from '../../../service/spend.service';
 import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
 import { Spend } from '../../../model/spend';
 import store from '../../../store/spendType';
+import 'rxjs/add/operator/filter';
 
 const moment = _moment;
 export const MY_FORMATS = {
@@ -58,10 +60,20 @@ export class SpendListComponent {
 
   constructor(
     private spendService: SpendService,
-    private bottomSheet: MatBottomSheet
+    private bottomSheet: MatBottomSheet,
+    private route: ActivatedRoute
   ) {
     // 初期表示TABを指定
-    this.selectedTab = store.isPublic ? store.publicTapNum : store.privateTapNum;
+    route.queryParams
+      .filter(params => params.isPublic)
+      .subscribe(params => {
+        // 通知をクリックし、アプリを開いた場合は、初期表示を「Public」にする
+        if (params.isPublic) {
+          this.selectedTab = store.publicTapNum;
+        } else {
+          this.selectedTab = store.isPublic ? store.publicTapNum : store.privateTapNum;
+        }
+      });
 
     // 支出リストを取得
     this.getSpendList();

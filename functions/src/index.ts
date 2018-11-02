@@ -9,6 +9,7 @@ export const fcmSend = functions.database.ref('/public_spend/{spendId}').onCreat
     notification: {
       title: 'Donn! 新規入力💰',
       body: spendInfo.memo + '( ¥' + spendInfo.amount + ') が入力されました',
+      clickAction: "https://donn-a0b1c.firebaseapp.com/spend-list?isPublic=true",
       icon: "https://user-images.githubusercontent.com/33277426/45892904-7bbe0f00-be04-11e8-8780-940767b3dddb.png"
     }
   };
