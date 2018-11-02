@@ -69,11 +69,11 @@ export class SpendListComponent {
       .subscribe(params => {
         // 通知をクリックし、アプリを開いた場合は、初期表示を「Public」にする
         if (params.isPublic) {
-          this.selectedTab = store.publicTapNum;
-        } else {
-          this.selectedTab = store.isPublic ? store.publicTapNum : store.privateTapNum;
+          store.setPublicSpendType();
         }
       });
+
+    this.selectedTab = store.isPublic ? store.publicTapNum : store.privateTapNum;
 
     // 支出リストを取得
     this.getSpendList();

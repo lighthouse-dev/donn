@@ -21,7 +21,7 @@ export class SpendComponent {
     { icon: 'face', label: 'Private' }
   ];
   selected    = new FormControl(store.privateTapNum);
-  categories  = store.isPublic ? Const.publicCategory : Const.privateCategory;
+  categories  = Const.privateCategory;
 
   get spendArray(): AbstractControl | null { return this.spendForm.get('spendArray'); }
 
