@@ -3,6 +3,7 @@ import { SpendService } from '../../../../service/spend.service';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { SpendDialogByCategoryComponent } from '../spend-dialog-by-category/spend-dialog-by-category.component';
+import store from '../../../../store/spendType';
 import * as Const from '../../../../shared/data.service';
 
 // Chart.js
@@ -38,7 +39,6 @@ export const MY_FORMATS = {
   ],
 })
 export class ShowCategoryComponent implements OnInit {
-  @Input() isPublic: boolean;
   @ViewChild('canvas')
   ref: ElementRef;
   chartData: ChartData;
@@ -46,6 +46,7 @@ export class ShowCategoryComponent implements OnInit {
   context: CanvasRenderingContext2D;
   chart: Chart;
 
+  storeObj = store;
   spendListByCategory = [];
   totalAmount: Number = 0;
   categorySum: any = [];
@@ -58,7 +59,7 @@ export class ShowCategoryComponent implements OnInit {
 
   ngOnInit() {
     // 共通
-    if (this.isPublic) {
+    if (store.isPublic) {
       this.getPublicSpendList();
       return;
     }
@@ -157,7 +158,7 @@ export class ShowCategoryComponent implements OnInit {
 
     this.searchMonth.setValue(ctrlValue);
 
-    if (this.isPublic) { // 共通
+    if (store.isPublic) { // 共通
       this.getPublicSpendList(this.searchMonth.value);
     } else { // 個人
       this.getPrivateSpendList(this.searchMonth.value);
@@ -177,7 +178,7 @@ export class ShowCategoryComponent implements OnInit {
     this.dialog.open(SpendDialogByCategoryComponent, {
       width: '90%',
       data: {
-        isPublic: this.isPublic,
+        isPublic: store.isPublic,
         categoryNum: categoryNum,
         spendList: this.spendListByCategory[categoryNum]
       }
@@ -191,7 +192,7 @@ export class ShowCategoryComponent implements OnInit {
   setChartByCategory() {
     const categoryLabel = [];
     const categoryData  = [];
-    const categoryList  = (this.isPublic) ? Const.PUBLIC_CATEGORY_LIST : Const.PRIVATE_CATEGORY_LIST;
+    const categoryList  = (store.isPublic) ? Const.PUBLIC_CATEGORY_LIST : Const.PRIVATE_CATEGORY_LIST;
 
     // Chart出力に合わせてデータを加工
     this.categorySum.forEach( (value, key) => {

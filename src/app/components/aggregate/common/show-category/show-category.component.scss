@@ -1,9 +1,11 @@
 .show-category-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0.8rem 1rem;
 
   .month-info-wrap {
     height: 3.2rem;
     padding: 0.2rem 0.7rem 0.5rem 1rem;
-    background-color: #f6faff;
 
     .month-info-form {
       float: left;
