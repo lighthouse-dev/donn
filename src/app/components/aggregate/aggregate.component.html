@@ -1,20 +1,20 @@
-<mat-tab-group
-  [selectedIndex]="selectedTab"
-  backgroundColor="primary">
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-icon>home</mat-icon>　Public
-    </ng-template>
+<div class="aggregate-container">
+  <mat-tab-group
+    [selectedIndex]="selectedTab"
+    (selectedIndexChange)="tabChanged($event)"
+    backgroundColor="primary"
+  >
+    <mat-tab *ngFor="let tab of tabs; let index = index">
+      <ng-template mat-tab-label>
+        <mat-icon>{{tab.icon}}</mat-icon>　{{tab.label}}
+      </ng-template>
 
-    <app-public-aggregate></app-public-aggregate>
-
-  </mat-tab>
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-icon>face</mat-icon>　Private
-    </ng-template>
-
-    <app-private-aggregate></app-private-aggregate>
-
-  </mat-tab>
-</mat-tab-group>
+      <ng-container *ngIf="storeObj.isPublic; else privateTemplate">
+        <app-show-category></app-show-category>
+      </ng-container>
+      <ng-template #privateTemplate>
+        <app-show-category></app-show-category>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+</div>

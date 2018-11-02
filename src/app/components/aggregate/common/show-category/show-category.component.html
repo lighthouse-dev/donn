@@ -1,46 +1,48 @@
 <div class="show-category-container">
-  <div class="month-info-wrap">
-    <mat-form-field class="month-info-form">
-      <input
-        matInput
-        [matDatepicker]="month"
-        [formControl]="searchMonth"
-        class="search-month"
-        readonly>
-      <mat-datepicker-toggle matSuffix [for]="month"></mat-datepicker-toggle>
-      <mat-datepicker
-        #month
-        touchUi
-        startView="year"
-        (monthSelected)="chosenMonthHandler($event, month)">
-      </mat-datepicker>
-    </mat-form-field>
-    <div class="total-amount">
-      <label> Total: {{ totalAmount | number }} </label>
-    </div>
-  </div>
-  <mat-divider></mat-divider>
-
-  <div *ngIf="!categorySum; else showCategorySum" class="no-data">
-    <p> データなし 🐧 </p>
-  </div>
-
-  <ng-template #showCategorySum>
-    <canvas #canvas></canvas>
-    <div *ngFor="let sum of categorySum; let categoryNum=index">
-      <div
-        *ngIf="sum >= 0"
-        (click)="openHistoryByCategory(categoryNum)"
-        class="category-row">
-        <div class="category-name-line">
-          <label>
-            {{ categoryNum | category:isPublic }}
-            ({{ sum | computeSumByCategory:totalAmount }}%)
-          </label>
-          <label class="category-sum"> ¥ {{ sum | number }} </label>
-        </div>
-        <mat-progress-bar mode="determinate" value="{{ sum | computeSumByCategory:totalAmount }}"></mat-progress-bar>
+  <div class="mat-elevation-z8">
+    <div class="month-info-wrap">
+      <mat-form-field class="month-info-form">
+        <input
+          matInput
+          [matDatepicker]="month"
+          [formControl]="searchMonth"
+          class="search-month"
+          readonly>
+        <mat-datepicker-toggle matSuffix [for]="month"></mat-datepicker-toggle>
+        <mat-datepicker
+          #month
+          touchUi
+          startView="year"
+          (monthSelected)="chosenMonthHandler($event, month)">
+        </mat-datepicker>
+      </mat-form-field>
+      <div class="total-amount">
+        <label> Total: {{ totalAmount | number }} </label>
       </div>
     </div>
-  </ng-template>
+    <mat-divider></mat-divider>
+
+    <div *ngIf="!categorySum; else showCategorySum" class="no-data">
+      <p> データなし 🐧 </p>
+    </div>
+
+    <ng-template #showCategorySum>
+      <canvas #canvas></canvas>
+      <div *ngFor="let sum of categorySum; let categoryNum=index">
+        <div
+          *ngIf="sum >= 0"
+          (click)="openHistoryByCategory(categoryNum)"
+          class="category-row">
+          <div class="category-name-line">
+            <label>
+              {{ categoryNum | category:storeObj.isPublic }}
+              ({{ sum | computeSumByCategory:totalAmount }}%)
+            </label>
+            <label class="category-sum"> ¥ {{ sum | number }} </label>
+          </div>
+          <mat-progress-bar mode="determinate" value="{{ sum | computeSumByCategory:totalAmount }}"></mat-progress-bar>
+        </div>
+      </div>
+    </ng-template>
+  </div>
 </div>
