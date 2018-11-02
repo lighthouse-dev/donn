@@ -233,7 +233,7 @@ export class ShowCategoryComponent implements OnInit {
         display: true,
         position: 'right',
         labels: {
-          fontColor: 'blue'
+          fontColor: '#1d1d1d'
         }
       },
       tooltips: {

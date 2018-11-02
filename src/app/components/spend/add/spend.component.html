@@ -77,13 +77,16 @@
               <button
                 type="submit"
                 (click)="save(spendForm.value)"
-                class="btn btn-default"
+                class="btn btn-default add-btn"
                 mat-raised-button
                 color="primary"
-                [disabled]="spendArray.get([0]).invalid || spendArray.get([1]).invalid">
-                登録
-              </button>
-              <button mat-button matStepperPrevious type="button"> 戻る </button>
+                [disabled]="spendArray.get([0]).invalid || spendArray.get([1]).invalid"
+              > 登録 </button>
+              <button
+                mat-button
+                matStepperPrevious
+                type="button"
+              > 戻る </button>
             </p>
           </mat-step>
         </mat-vertical-stepper>

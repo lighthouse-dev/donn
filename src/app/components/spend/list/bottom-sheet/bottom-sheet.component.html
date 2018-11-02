@@ -1,8 +1,15 @@
 <div class="bottom-sheet-container">
   <mat-nav-list class="mat-nav-list" role="navigation">
-    <button mat-flat-button color="primary" (click)="openEditForm()">
+    <button
+      mat-flat-button
+      class="edit-btn"
+      (click)="openEditForm()"
+    >
       <mat-icon>edit</mat-icon> 変更 </button>
-    <button mat-flat-button color="warn" (click)="deleteAlertDialog()">
+    <button
+      mat-flat-button color="warn"
+      (click)="deleteAlertDialog()"
+    >
       <mat-icon>delete</mat-icon> 削除
     </button>
   </mat-nav-list>
