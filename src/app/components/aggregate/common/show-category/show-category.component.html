@@ -22,8 +22,8 @@
     </div>
     <mat-divider></mat-divider>
 
-    <div *ngIf="!categorySum; else showCategorySum" class="no-data">
-      <p> データなし 🐧 </p>
+    <div *ngIf="!categorySum; else showCategorySum">
+      <p class="center"> データなし 🐧 </p>
     </div>
 
     <ng-template #showCategorySum>

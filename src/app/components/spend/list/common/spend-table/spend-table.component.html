@@ -1,58 +1,64 @@
-<table
-  mat-table
-  [dataSource]="dataSource"
-  matSortActive="createDate"
-  matSortDirection="desc"
-  matSort
->
-  <ng-container matColumnDef="createDate">
-    <th
-      mat-header-cell
-      *matHeaderCellDef
-      mat-sort-header
-      class="create-date-header"
-    > 日付 </th>
-    <td
-      mat-cell
-      *matCellDef="let element"
-      (click)="openBottomSheet(element)"
-      class="create-date-cell"
-    >
-      <label class="create-label">
-        {{ element.createDate | date:"MM/dd" }}
-      </label>
-    </td>
-  </ng-container>
-  <ng-container matColumnDef="category">
-    <th
-      mat-header-cell
-      *matHeaderCellDef
-      mat-sort-header
-      class="category-header"
-    > カテゴリー </th>
-    <td
-      mat-cell
-      *matCellDef="let element"
-      (click)="openBottomSheet(element)"
-      class="category-cell"
-    >
-      {{ element.category | category:storeObj.isPublic }}
-    </td>
-  </ng-container>
-  <ng-container matColumnDef="amount">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> 金額 </th>
-    <td
-      mat-cell
-      *matCellDef="let element"
-      (click)="openBottomSheet(element)"
-      class="amount-cell"
-    >
-      <div class="amount"> ¥ {{ element.amount | number }} </div>
-      <div class="memo"> {{ element.memo }} </div>
-    </td>
-  </ng-container>
+<ng-container *ngIf="spendList.length > 0; else noDataTemplate">
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    matSortActive="createDate"
+    matSortDirection="desc"
+    matSort
+  >
+    <ng-container matColumnDef="createDate">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        class="create-date-header"
+      > 日付 </th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        (click)="openBottomSheet(element)"
+        class="create-date-cell"
+      >
+        <label class="create-label">
+          {{ element.createDate | date:"MM/dd" }}
+        </label>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="category">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        class="category-header"
+      > カテゴリー </th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        (click)="openBottomSheet(element)"
+        class="category-cell"
+      >
+        {{ element.category | category:storeObj.isPublic }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> 金額 </th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        (click)="openBottomSheet(element)"
+        class="amount-cell"
+      >
+        <div class="amount"> ¥ {{ element.amount | number }} </div>
+        <div class="memo"> {{ element.memo }} </div>
+      </td>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
-<mat-paginator [pageSize]="6"></mat-paginator>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSize]="6"></mat-paginator>
+</ng-container>
+
+<ng-template #noDataTemplate>
+  <p class="center"> データなし 🐧 </p>
+</ng-template>
