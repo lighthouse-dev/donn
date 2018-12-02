@@ -93,6 +93,22 @@ export class SpendComponent {
   nextStep(stepper) {
     setTimeout(() => {
       stepper.next();
+      this.setFocus();
     }, 1);
+  }
+
+  /**
+   *「金額」にフォーカスを当てる
+   */
+  setFocus() {
+    const targetElem = document.getElementById('amount-input');
+
+    setTimeout(function waitTargetElem() {
+      if (document.body.contains(targetElem)) {
+        targetElem.focus();
+      } else {
+        setTimeout(waitTargetElem, 100);
+      }
+    }, 100);
   }
 }
