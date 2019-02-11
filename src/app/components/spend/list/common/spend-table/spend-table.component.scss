@@ -7,6 +7,21 @@ table {
   width: 100%;
 }
 
+.mat-form-field {
+  float: right;
+  width: 35vw;
+  margin-bottom: -10px;
+  margin-right: 1rem;
+  font-size: 13px;
+
+  .mat-icon.material-icons {
+    font-size: 110%;
+  }
+  .mat-form-field-infix {
+    padding: 0.7rem 0;
+  }
+}
+
 .month-info-wrap {
   height: 3.2rem;
   padding: 0.2rem 0.7rem 0.5rem 1rem;

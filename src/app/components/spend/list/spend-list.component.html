@@ -8,29 +8,30 @@
       <mat-icon>{{tab.icon}}</mat-icon>　{{tab.label}}
     </ng-template>
     <div class="spend-list-container">
-      <div class="mat-elevation-z8">
-        <div class="month-info-wrap">
-          <mat-form-field class="month-info-form">
-            <input
-              matInput
-              [matDatepicker]="month"
-              [formControl]="searchMonth"
-              class="search-month"
-              readonly
-            >
-            <mat-datepicker-toggle matSuffix [for]="month"></mat-datepicker-toggle>
-            <mat-datepicker
-              #month
-              touchUi
-              startView="year"
-              (monthSelected)="chosenMonthHandler($event, month)"
-            ></mat-datepicker>
-          </mat-form-field>
-          <div class="total-amount">
-            <label> Total： {{ totalAmount | number }} </label>
-          </div>
-        </div>
 
+      <div class="month-info-wrap">
+        <mat-form-field class="month-info-form">
+          <input
+            matInput
+            [matDatepicker]="month"
+            [formControl]="searchMonth"
+            class="search-month"
+            readonly
+          >
+          <mat-datepicker-toggle matSuffix [for]="month"></mat-datepicker-toggle>
+          <mat-datepicker
+            #month
+            touchUi
+            startView="year"
+            (monthSelected)="chosenMonthHandler($event, month)"
+          ></mat-datepicker>
+        </mat-form-field>
+        <div class="total-amount">
+          <label> Total： {{ totalAmount | number }} </label>
+        </div>
+      </div>
+
+      <div class="mat-elevation-z8">
         <ng-container *ngIf="storeObj.isPublic; else privateTableTemplate">
           <app-spend-table
             *ngIf="spendPublicList"

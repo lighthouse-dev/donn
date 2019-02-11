@@ -29,4 +29,8 @@ export class SpendTableComponent implements OnChanges {
   openBottomSheet(spend): void {
     this.openBottomSheetEvent.emit(spend);
   }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 }
