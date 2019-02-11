@@ -53,7 +53,7 @@
               <mat-error> 日付を選択してください </mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">
-              <mat-label><mat-icon>attach_money</mat-icon> 金額 </mat-label>
+              <mat-label> 金額 </mat-label>
               <input
                 matInput
                 type="number"
@@ -63,6 +63,10 @@
                 autocomplete="off"
                 placeholder="金額を入力してください"
               >
+              <span
+                matSuffix
+                class="float-left"
+              > &nbsp;&nbsp;¥ </span>
               <mat-error>
                 <strong>数字のみ</strong>(1~9999999) 入力してください
               </mat-error>
