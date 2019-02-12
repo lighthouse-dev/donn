@@ -46,8 +46,10 @@
                 matInput
                 [matDatepicker]="date"
                 formControlName="date"
+                (click)="date.open()"
                 placeholder="日付を選択してください"
-                readonly>
+                readonly
+              />
               <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
               <mat-datepicker touchUi #date></mat-datepicker>
               <mat-error> 日付を選択してください </mat-error>

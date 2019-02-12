@@ -15,9 +15,10 @@
             matInput
             [matDatepicker]="month"
             [formControl]="searchMonth"
+            (click)="month.open()"
             class="search-month"
             readonly
-          >
+          />
           <mat-datepicker-toggle matSuffix [for]="month"></mat-datepicker-toggle>
           <mat-datepicker
             #month
