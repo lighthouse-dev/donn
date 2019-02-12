@@ -75,6 +75,10 @@ h1, h2 {
   color: #555555;
 }
 
+.mat-tab-body-wrapper {
+  min-height: 100vh;
+}
+
 .mat-tab-labels .mat-tab-label {
   width: 50% !important;
   opacity: .2;
