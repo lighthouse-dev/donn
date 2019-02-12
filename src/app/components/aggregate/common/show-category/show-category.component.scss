@@ -1,7 +1,11 @@
 .show-category-container {
   display: flex;
   flex-direction: column;
-  padding: 0.8rem 1rem;
+  padding: 0 1rem;
+
+  .mat-elevation-z8 {
+    padding-top: 1rem;
+  }
 
   .month-info-wrap {
     height: 3.2rem;

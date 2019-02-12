@@ -1,27 +1,25 @@
 <div class="show-category-container">
-  <div class="mat-elevation-z8">
-    <div class="month-info-wrap">
-      <mat-form-field class="month-info-form">
-        <input
-          matInput
-          [matDatepicker]="month"
-          [formControl]="searchMonth"
-          class="search-month"
-          readonly>
-        <mat-datepicker-toggle matSuffix [for]="month"></mat-datepicker-toggle>
-        <mat-datepicker
-          #month
-          touchUi
-          startView="year"
-          (monthSelected)="chosenMonthHandler($event, month)">
-        </mat-datepicker>
-      </mat-form-field>
-      <div class="total-amount">
-        <label> Total: {{ totalAmount | number }} </label>
-      </div>
+  <div class="month-info-wrap">
+    <mat-form-field class="month-info-form">
+      <input
+        matInput
+        [matDatepicker]="month"
+        [formControl]="searchMonth"
+        class="search-month"
+        readonly>
+      <mat-datepicker-toggle matSuffix [for]="month"></mat-datepicker-toggle>
+      <mat-datepicker
+        #month
+        touchUi
+        startView="year"
+        (monthSelected)="chosenMonthHandler($event, month)">
+      </mat-datepicker>
+    </mat-form-field>
+    <div class="total-amount">
+      <label> Total: {{ totalAmount | number }} </label>
     </div>
-    <mat-divider></mat-divider>
-
+  </div>
+  <div class="mat-elevation-z8">
     <div *ngIf="!categorySum; else showCategorySum">
       <p class="center"> データなし 🐧 </p>
     </div>
