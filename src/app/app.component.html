@@ -14,8 +14,17 @@
       <button mat-menu-item [routerLink]="['/aggregate']">
         <mat-icon> equalizer </mat-icon> 集計
       </button>
+      <button mat-menu-item [matMenuTriggerFor]="systemSettings">
+        <mat-icon> settings </mat-icon> 設定
+      </button>
       <button mat-menu-item (click)="logout()">
         <mat-icon> subdirectory_arrow_right </mat-icon> ログアウト
+      </button>
+    </mat-menu>
+
+    <mat-menu #systemSettings="matMenu">
+      <button mat-menu-item>
+        <mat-icon> loop </mat-icon> 固定支出管理(準備中)
       </button>
     </mat-menu>
   </span>
@@ -23,4 +32,29 @@
 <main>
   <router-outlet></router-outlet>
 </main>
-<footer></footer>
+<mat-toolbar
+  color="primary"
+  class="footer"
+>
+  <div
+    class="menu-tab-btn"
+    [routerLink]="['/spend']"
+  >
+    <mat-icon> attach_money </mat-icon>
+    <label> 入力 </label>
+  </div>
+  <div
+    class="menu-tab-btn"
+    [routerLink]="['/spend-list']"
+  >
+    <mat-icon> show_chart </mat-icon>
+    <label> 履歴 </label>
+  </div>
+  <div
+    class="menu-tab-btn"
+    [routerLink]="['/aggregate']"
+  >
+    <mat-icon> equalizer </mat-icon>
+    <label> 集計 </label>
+  </div>
+</mat-toolbar>
