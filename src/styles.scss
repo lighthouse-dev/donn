@@ -12,11 +12,24 @@ body {
   background-color: #ffffff;
   font-family: 'Open Sans', 'Hiragino Kaku Gothic ProN', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif !important;
 
+  main {
+    height: 100vh;
+  }
+
   .mat-toolbar.mat-primary,
   .mat-tab-list {
+    position: sticky;
+    top: 0;
+    z-index: 999;
     background: rgb(241,128,135);
     background: linear-gradient(90deg, rgba(241,128,135,1) 50%, rgba(244,164,154,1) 100%);
     font-weight: bold;
+  }
+
+  .mat-tab-header {
+    position: sticky;
+    top: 55px;
+    z-index: 999;
   }
 
   .mat-step-header .mat-step-icon,
