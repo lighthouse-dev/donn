@@ -9,16 +9,13 @@ import store from '../../store/spendType';
 })
 export class AggregateComponent {
   storeObj    = store;
-  selectedTab = store.privateTapNum;
+  selectedTab = store.isPublic ? store.publicTapNum : store.privateTapNum;
   tabs = [
     { icon: 'home', label: 'Public' },
     { icon: 'face', label: 'Private' }
   ];
 
-  constructor(private route: ActivatedRoute) {
-    // 初期表示TABを指定
-    this.selectedTab = store.isPublic ? store.publicTapNum : store.privateTapNum;
-  }
+  constructor(private route: ActivatedRoute) {}
 
   /**
    * tabChanged

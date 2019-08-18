@@ -1,5 +1,5 @@
 export default {
-  isPublic: false, // デフォルト値：Private
+  isPublic: true, // デフォルト値：Private
   publicTapNum: 0,
   privateTapNum: 1,
 

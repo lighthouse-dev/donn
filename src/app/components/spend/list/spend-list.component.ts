@@ -40,7 +40,7 @@ export const MY_FORMATS = {
   ],
 })
 export class SpendListComponent {
-  selectedTab = store.privateTapNum;
+  selectedTab = store.isPublic ? store.publicTapNum : store.privateTapNum;
   tabs = [
     { icon: 'home', label: 'Public' },
     { icon: 'face', label: 'Private' }

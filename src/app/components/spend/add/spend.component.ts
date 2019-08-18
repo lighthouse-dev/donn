@@ -20,8 +20,8 @@ export class SpendComponent {
     { icon: 'home', label: 'Public' },
     { icon: 'face', label: 'Private' }
   ];
-  selected    = new FormControl(store.privateTapNum);
-  categories  = Const.privateCategory;
+  selected    = store.isPublic ? new FormControl(store.publicTapNum) : new FormControl(store.privateTapNum);
+  categories  = store.isPublic ? Const.publicCategory : Const.privateCategory;
 
   get spendArray(): AbstractControl | null { return this.spendForm.get('spendArray'); }
 
@@ -32,9 +32,7 @@ export class SpendComponent {
     private router: Router,
     private alertMessageComponent: AlertMessageComponent
   ) {
-    // 初期表示Tabを「Private」にする
-    store.setPrivateSpendType();
-
+    
     // Form初期化
     this.createSpendForm();
   }
