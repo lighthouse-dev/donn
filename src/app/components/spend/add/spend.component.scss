@@ -19,7 +19,13 @@
 
   .add-btn {
     float: right;
-    width: 7rem;
+    width: 50%;
+    font-weight: bold;
+  }
+
+  .continue-add-btn {
+    float: left;
+    width: 40%;
     font-weight: bold;
   }
 }

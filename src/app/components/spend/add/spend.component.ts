@@ -69,7 +69,7 @@ export class SpendComponent {
     this.categories = Const.publicCategory;
   }
 
-  save(spend) {
+  save(spend, isContinueAdd = false, stepper = null) {
     this.spend = {
       uid: this.authService.uid,
       category: spend['spendArray']['0']['category'],
@@ -80,7 +80,13 @@ export class SpendComponent {
 
     this.spendService.addSpend(this.spend)
       .then(ref => {
-        this.router.navigate(['/spend-list']);
+        if (isContinueAdd) { // 続けて登録
+          stepper.reset();
+          this.createSpendForm(); // Form初期化
+        } else { // 通常登録
+          this.router.navigate(['/spend-list']);
+        }
+
         this.alertMessageComponent.openSnackBar('支出を入力しました 💰');
       });
   }

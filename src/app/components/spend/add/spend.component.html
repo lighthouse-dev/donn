@@ -83,10 +83,13 @@
             </mat-form-field>
             <p>
               <button
+                type="submit"
                 mat-button
-                matStepperPrevious
-                type="button"
-              > 戻る </button>
+                class="btn btn-default continue-add-btn"
+                color="primary"
+                (click)="save(spendForm.value, true, linearVerticalStepper)"
+                [disabled]="spendArray.get([0]).invalid || spendArray.get([1]).invalid"
+              > 続けて登録 </button>
               <button
                 type="submit"
                 mat-raised-button
