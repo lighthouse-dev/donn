@@ -125,14 +125,14 @@ export class SpendService {
   getSearchDate(searchDate = null) {
     if (!searchDate) {
       return {
-        startAt: moment().startOf('month').toISOString(),
-        endAt: moment().endOf('month').toISOString()
+        startAt: moment().startOf('month').date(25).subtract(1, 'month').toISOString(),
+        endAt: moment().endOf('month').date(24).toISOString()
       };
     }
 
     return {
-      startAt: moment(searchDate).startOf('month').toISOString(),
-      endAt: moment(searchDate).endOf('month').toISOString()
+      startAt: moment(searchDate).startOf('month').date(25).subtract(1, 'month').toISOString(),
+      endAt: moment(searchDate).endOf('month').date(24).toISOString()
     };
   }
 }
