@@ -2,18 +2,7 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 admin.initializeApp();
 
-export const fcmSend = functions.database.ref('/public_spend/{spendId}').onCreate((snapshot, context) => {
-  const spendInfo = snapshot.val();
-
-  const payload = {
-    notification: {
-      title: 'Donn! 新規入力💰',
-      body: spendInfo.memo + '( ¥' + spendInfo.amount + ') が入力されました',
-      clickAction: "https://donn-a0b1c.firebaseapp.com/spend-list?isPublic=true",
-      icon: "https://user-images.githubusercontent.com/33277426/45892904-7bbe0f00-be04-11e8-8780-940767b3dddb.png"
-    }
-  };
-
+const messagingSendToDevice = (payload) => {
   admin.database()
     .ref('/fcmTokens/')
     .once('value')
@@ -34,5 +23,47 @@ export const fcmSend = functions.database.ref('/public_spend/{spendId}').onCreat
     .catch(err => {
       console.log(err);
     });
+};
 
+export const fcmSend = functions.database.ref('/public_spend/{spendId}').onCreate((snapshot, context) => {
+  const spendInfo = snapshot.val();
+
+  const payload = {
+    notification: {
+      title: 'Donn! 新規入力💰',
+      body: spendInfo.memo + '( ¥' + spendInfo.amount + ') が入力されました',
+      clickAction: "https://donn-a0b1c.firebaseapp.com/spend-list?isPublic=true",
+      icon: "https://user-images.githubusercontent.com/33277426/45892904-7bbe0f00-be04-11e8-8780-940767b3dddb.png"
+    }
+  };
+
+  messagingSendToDevice(payload);
+});
+
+export const dailyPushLunch = functions.pubsub.topic('daily-push-lunch').onPublish(() => {
+
+  const payload = {
+    notification: {
+      title: 'リマインダー',
+      body: '入力は済ませましたか？午後も頑張りましょう！🐧',
+      clickAction: "https://donn-a0b1c.firebaseapp.com/spend",
+      icon: "https://user-images.githubusercontent.com/33277426/45892904-7bbe0f00-be04-11e8-8780-940767b3dddb.png"
+    }
+  };
+
+  messagingSendToDevice(payload);
+});
+
+export const dailyPushDinner = functions.pubsub.topic('daily-push-dinner').onPublish(() => {
+
+  const payload = {
+    notification: {
+      title: 'リマインダー',
+      body: '入力は済ませましたか？今日も一日お疲れさまでした！🍺',
+      clickAction: "https://donn-a0b1c.firebaseapp.com/spend",
+      icon: "https://user-images.githubusercontent.com/33277426/45892904-7bbe0f00-be04-11e8-8780-940767b3dddb.png"
+    }
+  };
+
+  messagingSendToDevice(payload);
 });
