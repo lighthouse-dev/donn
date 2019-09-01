@@ -30,7 +30,7 @@ export const fcmSend = functions.database.ref('/public_spend/{spendId}').onCreat
 
   const payload = {
     notification: {
-      title: 'Donn! 新規入力💰',
+      title: '新規入力💰',
       body: spendInfo.memo + '( ¥' + spendInfo.amount + ') が入力されました',
       clickAction: "https://donn-a0b1c.firebaseapp.com/spend-list?isPublic=true",
       icon: "https://user-images.githubusercontent.com/33277426/45892904-7bbe0f00-be04-11e8-8780-940767b3dddb.png"
@@ -44,8 +44,8 @@ export const dailyPushLunch = functions.pubsub.topic('daily-push-lunch').onPubli
 
   const payload = {
     notification: {
-      title: 'リマインダー',
-      body: '入力は済ませましたか？午後も頑張りましょう！🐧',
+      title: 'リマインダー🐧',
+      body: '入力は済ませましたか？午後も頑張りましょう！😃',
       clickAction: "https://donn-a0b1c.firebaseapp.com/spend",
       icon: "https://user-images.githubusercontent.com/33277426/45892904-7bbe0f00-be04-11e8-8780-940767b3dddb.png"
     }
@@ -58,9 +58,23 @@ export const dailyPushDinner = functions.pubsub.topic('daily-push-dinner').onPub
 
   const payload = {
     notification: {
-      title: 'リマインダー',
+      title: 'リマインダー🐧',
       body: '入力は済ませましたか？今日も一日お疲れさまでした！🍺',
       clickAction: "https://donn-a0b1c.firebaseapp.com/spend",
+      icon: "https://user-images.githubusercontent.com/33277426/45892904-7bbe0f00-be04-11e8-8780-940767b3dddb.png"
+    }
+  };
+
+  messagingSendToDevice(payload);
+});
+
+export const monthlyPushSpend = functions.pubsub.topic('monthly-push-spend').onPublish(() => {
+
+  const payload = {
+    notification: {
+      title: 'リマインダー🐧',
+      body: '今月もお疲れさまでした！一ヶ月の支出をチェックしてみましょう 👀',
+      clickAction: "https://donn-a0b1c.firebaseapp.com/spend-list?isPublic=true",
       icon: "https://user-images.githubusercontent.com/33277426/45892904-7bbe0f00-be04-11e8-8780-940767b3dddb.png"
     }
   };
