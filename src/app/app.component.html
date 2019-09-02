@@ -1,5 +1,4 @@
 <mat-toolbar color="primary">
-  <span class="example-fill-remaining-space"> Donn </span>
   <span *ngIf="authService.uid">
     <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon> menu </mat-icon>
@@ -40,21 +39,18 @@
     class="menu-tab-btn"
     [routerLink]="['/spend']"
   >
-    <mat-icon> attach_money </mat-icon>
-    <label> 入力 </label>
+    <mat-icon> add_box </mat-icon>
   </div>
   <div
     class="menu-tab-btn"
     [routerLink]="['/spend-list']"
   >
     <mat-icon> show_chart </mat-icon>
-    <label> 履歴 </label>
   </div>
   <div
     class="menu-tab-btn"
     [routerLink]="['/aggregate']"
   >
     <mat-icon> equalizer </mat-icon>
-    <label> 集計 </label>
   </div>
 </mat-toolbar>
