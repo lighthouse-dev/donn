@@ -9,17 +9,15 @@
 }
 
 .footer {
-  position: sticky;
   bottom: 0;
   left: 0;
   right: 0;
   z-index: 999;
   height: 50px;
+  padding-bottom: 5px;
 
   .menu-tab-btn {
     width: 33%;
-    text-align: center;
-    margin-top: 0.5rem;
     color: #ffffff;
 
     .mat-icon {
