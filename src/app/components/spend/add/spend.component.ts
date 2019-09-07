@@ -20,6 +20,7 @@ export class SpendComponent {
     { icon: 'home', label: 'Public' },
     { icon: 'face', label: 'Private' }
   ];
+  storeObj    = store;
   selected    = store.isPublic ? new FormControl(store.publicTapNum) : new FormControl(store.privateTapNum);
   categories  = store.isPublic ? Const.publicCategory : Const.privateCategory;
 

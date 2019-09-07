@@ -17,6 +17,7 @@ export class EditSpendComponent {
   spendData: Spend;
   spendForm: FormGroup;
   categories = null;
+  storeObj   = store;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: Spend,

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './core/auth.service';
 import { MessagingService } from './service/messaging.service';
+import store from './store/spendType';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,7 @@ import { MessagingService } from './service/messaging.service';
 export class AppComponent implements OnInit {
   title = 'donn';
   message;
+  storeObj = store;
 
   constructor(
     public authService: AuthService,

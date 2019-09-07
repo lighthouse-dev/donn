@@ -62,6 +62,8 @@
                 formControlName="amount"
                 id="amount-input"
                 class="textAlignRight"
+                (focus)="storeObj.setHiddenFooter()"
+                (focusout)="storeObj.setShowFooter()"
                 autocomplete="off"
                 placeholder="金額を入力してください"
               >
@@ -77,8 +79,11 @@
               <mat-label><mat-icon>create</mat-icon> メモ </mat-label>
               <textarea
                 matInput
+                (focus)="storeObj.setHiddenFooter()"
+                (focusout)="storeObj.setShowFooter()"
                 formControlName="memo"
-                placeholder="メモを入力してください">
+                placeholder="メモを入力してください"
+              >
               </textarea>
             </mat-form-field>
             <p>
