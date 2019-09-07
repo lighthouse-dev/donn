@@ -32,7 +32,6 @@ export class SpendComponent {
     private router: Router,
     private alertMessageComponent: AlertMessageComponent
   ) {
-    
     // Form初期化
     this.createSpendForm();
   }
