@@ -1,3 +1,52 @@
-<p>
-  fixed-spend-list works!
-</p>
+<div 
+  *ngIf="fixedSpendList"
+  class="fixed-spend-list-container mat-elevation-z8"
+>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="openAddDialog()"
+  > 新規追加 </button>
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    matSortActive="createDate"
+    matSortDirection="desc"
+    matSort
+  >
+    <ng-container matColumnDef="createDate">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        class="create-date-header"
+      > 日付 </th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        class="create-date-cell"
+      >
+        <label class="create-label"> {{ element.createDate | date:"MM/dd" }} </label>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="amount">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+      > 金額 </th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        class="amount-cell"
+      >
+        <div class="amount"> ¥ {{ element.amount | number }} </div>
+        <div class="memo"> {{ element.memo }} </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
