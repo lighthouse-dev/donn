@@ -41,6 +41,7 @@ import { AlertMessageComponent } from './components/common/alert-message/alert-m
 import { AggregateComponent } from './components/aggregate/aggregate.component';
 import { ShowCategoryComponent } from './components/aggregate/common/show-category/show-category.component';
 import { SpendDialogByCategoryComponent } from './components/aggregate/common/spend-dialog-by-category/spend-dialog-by-category.component';
+import { FixedSpendListComponent } from './components/fixed-spend/list/fixed-spend-list.component';
 
 // Routing
 import { AppRoutingModule } from './app-routing.module';
@@ -58,7 +59,8 @@ import { AppRoutingModule } from './app-routing.module';
     AlertMessageComponent,
     AggregateComponent,
     ShowCategoryComponent,
-    SpendDialogByCategoryComponent
+    SpendDialogByCategoryComponent,
+    FixedSpendListComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

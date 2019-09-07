@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 // Component
 import { SpendListComponent } from './components/spend/list/spend-list.component';
 import { AggregateComponent } from './components/aggregate/aggregate.component';
+import { FixedSpendListComponent } from './components/fixed-spend/list/fixed-spend-list.component';
 
 // Auth
 import { UserResolver } from './core/user.resolver';
@@ -34,6 +35,11 @@ export const routes: Routes = [
   {
     path: 'aggregate',
     component: AggregateComponent,
+    resolve: { data: UserResolver}
+  },
+  {
+    path: 'fixed-spend-list',
+    component: FixedSpendListComponent,
     resolve: { data: UserResolver}
   }
 ];
