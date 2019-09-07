@@ -35,6 +35,7 @@ export class SpendComponent {
   ) {
     // Form初期化
     this.createSpendForm();
+    this.storeObj.setShowFooter();
   }
 
   createSpendForm() {

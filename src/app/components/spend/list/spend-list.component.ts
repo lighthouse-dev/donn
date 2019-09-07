@@ -77,6 +77,7 @@ export class SpendListComponent {
 
     // 支出リストを取得
     this.getSpendList();
+    this.storeObj.setShowFooter();
   }
 
   /**

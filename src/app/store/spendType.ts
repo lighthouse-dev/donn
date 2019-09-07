@@ -1,6 +1,6 @@
 export default {
   isPublic: true, // デフォルト値：Private
-  isShowFooter: true,
+  isShowFooter: false,
   publicTapNum: 0,
   privateTapNum: 1,
 

@@ -15,7 +15,9 @@ export class AggregateComponent {
     { icon: 'face', label: 'Private' }
   ];
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute) {
+    this.storeObj.setShowFooter();
+  }
 
   /**
    * tabChanged
