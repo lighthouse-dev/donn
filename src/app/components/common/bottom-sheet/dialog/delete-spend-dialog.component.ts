@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { Spend } from '../../../../../model/spend';
+import { Spend } from '../../../../model/spend';
 
 @Component({
   selector: 'app-delete-spend-dialog',

@@ -6,7 +6,7 @@ import { MatBottomSheet } from '@angular/material';
 import { Spend } from '../../../model/spend';
 import { SpendService } from '../../../service/spend.service';
 import { AddFixedSpendComponent } from '../add/add-fixed-spend.component';
-import { BottomSheetComponent } from '../../spend/list/bottom-sheet/bottom-sheet.component';
+import { BottomSheetComponent } from '../../common/bottom-sheet/bottom-sheet.component';
 import store from '../../../store/spendType';
 
 @Component({

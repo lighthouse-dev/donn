@@ -11,7 +11,7 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 import * as _moment from 'moment';
 
 import { SpendService } from '../../../service/spend.service';
-import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
+import { BottomSheetComponent } from '../../common/bottom-sheet/bottom-sheet.component';
 import { Spend } from '../../../model/spend';
 import store from '../../../store/spendType';
 import 'rxjs/add/operator/filter';

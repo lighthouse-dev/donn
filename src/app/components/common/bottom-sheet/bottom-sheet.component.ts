@@ -2,17 +2,17 @@ import { Component, Inject } from '@angular/core';
 import { MatBottomSheetRef } from '@angular/material';
 import { MatDialog } from '@angular/material';
 import { MAT_BOTTOM_SHEET_DATA } from '@angular/material';
-import { Spend } from '../../../../model/spend';
-import { SpendService } from '../../../../service/spend.service';
+import { Spend } from '../../../model/spend';
+import { SpendService } from '../../../service/spend.service';
 import { DeleteSpendDialogComponent } from './dialog/delete-spend-dialog.component';
-import { EditSpendComponent } from '../../edit/edit-spend.component';
-import { EditFixedSpendComponent } from '../../../fixed-spend/edit/edit-fixed-spend.component';
-import { AlertMessageComponent } from '../../../common/alert-message/alert-message.component';
+import { EditSpendComponent } from '../../spend/edit/edit-spend.component';
+import { EditFixedSpendComponent } from '../../fixed-spend/edit/edit-fixed-spend.component';
+import { AlertMessageComponent } from '../alert-message/alert-message.component';
 
 @Component({
   selector: 'app-bottom-sheet',
   templateUrl: './bottom-sheet.component.html',
-  styleUrls: ['./bottom-sheet.component.scss']
+  styleUrls: ['./bottom-sheet.component.scss'],
 })
 export class BottomSheetComponent {
   spendData: Spend = null;
