@@ -17,7 +17,7 @@ export class FixedSpendTableComponent implements OnChanges  {
   @ViewChild(MatSort) sort: MatSort;
   @Output() openBottomSheetEvent = new EventEmitter();
 
-  constructor() { }
+  constructor() {}
 
   ngOnChanges() {
     this.dataSource = new MatTableDataSource(this.fixedSpendList);
