@@ -19,7 +19,7 @@ export class FixedSpendListComponent implements OnInit {
   storeObj = store;
 
   dataSource: MatTableDataSource<Spend>;
-  displayedColumns: string[] = ['createDate', 'amount'];
+  displayedColumns: string[] = ['category', 'amount'];
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
@@ -37,7 +37,8 @@ export class FixedSpendListComponent implements OnInit {
 
   getFixedSpendList() {
     return new Promise( resolve => {
-      const data = this.spendService.getSpendList();
+      const data = this.spendService.getFixedSpendList();
+
       data.snapshotChanges().subscribe(item => {
         // 初期化
         this.spendTempList  = [];
@@ -53,6 +54,8 @@ export class FixedSpendListComponent implements OnInit {
         });
 
         this.fixedSpendList = this.spendTempList;
+        console.log(this.fixedSpendList);
+        
         resolve();
       });
     });
