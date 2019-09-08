@@ -41,6 +41,7 @@
         <td
           mat-cell
           *matCellDef="let element"
+          (click)="openBottomSheet(element)"
           class="amount-cell"
         >
           <div class="amount"> ¥ {{ element.amount | number }} </div>

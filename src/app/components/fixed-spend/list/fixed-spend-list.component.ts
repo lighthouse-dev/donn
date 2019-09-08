@@ -1,10 +1,12 @@
 import { Component, Output, EventEmitter, ViewChild, OnInit } from '@angular/core';
-import { Spend } from '../../../model/spend';
-import { SpendService } from '../../../service/spend.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material';
 import { MatDialog } from '@angular/material';
+import { MatBottomSheet } from '@angular/material';
+import { Spend } from '../../../model/spend';
+import { SpendService } from '../../../service/spend.service';
 import { AddFixedSpendComponent } from '../add/add-fixed-spend.component';
+import { BottomSheetComponent } from '../../spend/list/bottom-sheet/bottom-sheet.component';
 import store from '../../../store/spendType';
 
 @Component({
@@ -24,7 +26,8 @@ export class FixedSpendListComponent implements OnInit {
 
   constructor(
     private spendService: SpendService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private bottomSheet: MatBottomSheet
   ) {}
 
   async ngOnInit() {
@@ -54,8 +57,6 @@ export class FixedSpendListComponent implements OnInit {
         });
 
         this.fixedSpendList = this.spendTempList;
-        console.log(this.fixedSpendList);
-        
         resolve();
       });
     });
@@ -65,6 +66,18 @@ export class FixedSpendListComponent implements OnInit {
     this.dialog.open(AddFixedSpendComponent, {
       width: '75%',
       // data: this.spendData
+    });
+  }
+
+  /**
+   * openBottomSheet
+   * アクションメニューを表示（変更、削除）
+   *
+   * @param spend
+   */
+  openBottomSheet(spend): void {
+    this.bottomSheet.open(BottomSheetComponent, {
+      data: { spend, isFixedSpendData: true },
     });
   }
 }

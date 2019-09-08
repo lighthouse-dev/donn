@@ -6,6 +6,7 @@ import { Spend } from '../../../../model/spend';
 import { SpendService } from '../../../../service/spend.service';
 import { DeleteSpendDialogComponent } from './dialog/delete-spend-dialog.component';
 import { EditSpendComponent } from '../../edit/edit-spend.component';
+import { EditFixedSpendComponent } from '../../../fixed-spend/edit/edit-fixed-spend.component';
 import { AlertMessageComponent } from '../../../common/alert-message/alert-message.component';
 
 @Component({
@@ -15,6 +16,7 @@ import { AlertMessageComponent } from '../../../common/alert-message/alert-messa
 })
 export class BottomSheetComponent {
   spendData: Spend = null;
+  isFixedSpendData: Boolean = false;
 
   constructor(
     private bottomSheetRef: MatBottomSheetRef<BottomSheetComponent>,
@@ -23,7 +25,8 @@ export class BottomSheetComponent {
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: any,
     private alertMessageComponent: AlertMessageComponent
   ) {
-    this.spendData = data;
+    this.spendData = data.spend;
+    this.isFixedSpendData = data.isFixedSpendData ? true : false;
   }
 
   deleteAlertDialog() {
@@ -53,12 +56,18 @@ export class BottomSheetComponent {
   }
 
   openEditForm() {
-    this.dialog.open(EditSpendComponent, {
-      width: '75%',
-      data: this.spendData
-    });
+    if (this.isFixedSpendData) {
+      this.dialog.open(EditFixedSpendComponent, {
+        width: '75%',
+        data: this.spendData,
+      });
+    } else {
+      this.dialog.open(EditSpendComponent, {
+        width: '75%',
+        data: this.spendData,
+      });
+    }
 
     this.bottomSheetRef.dismiss(); // bottomSheetを閉じる
   }
-
 }

@@ -125,6 +125,16 @@ export class SpendService {
   }
 
   /**
+   * 固定支出編集
+   * 
+   * @param editKey 
+   * @param spend 
+   */
+  editFixedSpend(editKey: any, spend: Spend) {
+    return this.db.list<Spend>('fixed_spend/').update(editKey, spend);
+  }
+
+  /**
    * getSearchDate
    * 取得する検索期間をセットする
    * ただし、期間を指定していない場合は、現在の日付を基準にする

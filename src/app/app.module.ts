@@ -43,6 +43,7 @@ import { ShowCategoryComponent } from './components/aggregate/common/show-catego
 import { SpendDialogByCategoryComponent } from './components/aggregate/common/spend-dialog-by-category/spend-dialog-by-category.component';
 import { FixedSpendListComponent } from './components/fixed-spend/list/fixed-spend-list.component';
 import { AddFixedSpendComponent } from './components/fixed-spend/add/add-fixed-spend.component';
+import { EditFixedSpendComponent } from './components/fixed-spend/edit/edit-fixed-spend.component';
 
 // Routing
 import { AppRoutingModule } from './app-routing.module';
@@ -62,7 +63,8 @@ import { AppRoutingModule } from './app-routing.module';
     ShowCategoryComponent,
     SpendDialogByCategoryComponent,
     FixedSpendListComponent,
-    AddFixedSpendComponent
+    AddFixedSpendComponent,
+    EditFixedSpendComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -75,7 +77,7 @@ import { AppRoutingModule } from './app-routing.module';
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule,   // imports firebase/auth, only needed for auth features
     AngularFireDatabaseModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [
     AuthService,
@@ -94,8 +96,9 @@ import { AppRoutingModule } from './app-routing.module';
     BottomSheetComponent,
     DeleteSpendDialogComponent,
     SpendDialogByCategoryComponent,
-    AddFixedSpendComponent
+    AddFixedSpendComponent,
+    EditFixedSpendComponent,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

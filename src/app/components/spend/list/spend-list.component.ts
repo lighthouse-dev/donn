@@ -149,7 +149,7 @@ export class SpendListComponent {
    */
   openBottomSheet(spend): void {
     this.bottomSheet.open(BottomSheetComponent, {
-      data: spend
+      data: { spend, isFixedSpendData: false },
     });
   }
 
