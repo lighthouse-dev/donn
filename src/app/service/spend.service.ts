@@ -115,6 +115,14 @@ export class SpendService {
     ).remove();
   }
 
+  /**
+   * 固定支出削除
+   * @param deleteKey
+   */
+  deleteFixedSpend(deleteKey: String) {
+    return this.db.list<Spend>(Const.dbList.fixed + deleteKey).remove();
+  }
+
   // TODO: 関数名を全体的に修正 - index(), add(), edit() delete()
 
   /**

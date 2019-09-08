@@ -32,7 +32,7 @@ export class BottomSheetComponent {
   deleteAlertDialog() {
     // 削除確認のDialogを表示
     const dialogRef = this.dialog.open(DeleteSpendDialogComponent, {
-      data: this.spendData
+      data: this.spendData,
     });
 
     // bottomSheetを閉じる
@@ -47,6 +47,17 @@ export class BottomSheetComponent {
 
   // 削除処理
   deleteSpend() {
+
+    if (this.isFixedSpendData) {
+      this.spendService.deleteFixedSpend(this.spendData['$key'])
+        .then(ref => {
+          this.alertMessageComponent.openSnackBar('支出を削除しました 👀');
+        }).catch(ref => {
+          this.alertMessageComponent.openSnackBar('支出を削除できませんでした 😱');
+        });
+      return;
+    }
+
     this.spendService.deleteSpend(this.spendData['$key'])
       .then(ref => {
         this.alertMessageComponent.openSnackBar('支出を削除しました 👀');
