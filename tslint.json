@@ -40,7 +40,7 @@
     "no-console": [true, "debug", "info", "time", "timeEnd", "trace", "log"],
     "no-construct": true,
     "no-debugger": true,
-    "no-duplicate-imports": true,
+    "no-duplicate-imports": false,
     "no-duplicate-super": true,
     "no-empty": false,
     "no-empty-interface": true,
