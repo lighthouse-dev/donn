@@ -42,6 +42,7 @@ import { AggregateComponent } from './components/aggregate/aggregate.component';
 import { ShowCategoryComponent } from './components/aggregate/common/show-category/show-category.component';
 import { SpendDialogByCategoryComponent } from './components/aggregate/common/spend-dialog-by-category/spend-dialog-by-category.component';
 import { FixedSpendListComponent } from './components/fixed-spend/list/fixed-spend-list.component';
+import { AddFixedSpendComponent } from './components/fixed-spend/add/add-fixed-spend.component';
 
 // Routing
 import { AppRoutingModule } from './app-routing.module';
@@ -60,7 +61,8 @@ import { AppRoutingModule } from './app-routing.module';
     AggregateComponent,
     ShowCategoryComponent,
     SpendDialogByCategoryComponent,
-    FixedSpendListComponent
+    FixedSpendListComponent,
+    AddFixedSpendComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -91,7 +93,8 @@ import { AppRoutingModule } from './app-routing.module';
     EditSpendComponent,
     BottomSheetComponent,
     DeleteSpendDialogComponent,
-    SpendDialogByCategoryComponent
+    SpendDialogByCategoryComponent,
+    AddFixedSpendComponent
   ],
   bootstrap: [AppComponent]
 })

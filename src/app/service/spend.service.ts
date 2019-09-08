@@ -15,6 +15,7 @@ const moment = _moment;
 export class SpendService {
   private spendPublicListRef  = this.db.list<Spend>('public_spend', ref => ref.orderByChild('createDate'));
   private spendPrivateListRef = this.db.list<Spend>('private_spend/' + this.authService.uid, ref => ref.orderByChild('createDate'));
+  private fixedSpendListRef   = this.db.list<Spend>('fixed_spend', ref => ref.orderByChild('amount'));
 
   constructor(
     private db: AngularFireDatabase,
@@ -39,6 +40,10 @@ export class SpendService {
     return this.spendPrivateListRef.push(spend);
   }
 
+  addFixedSpend(fixedSpend: Spend) {
+    return this.fixedSpendListRef.push(fixedSpend);
+  }
+
   // TODO: get~SpendList()を１つの関数にまとめる
   // Get Public
   getPublicSpendList(searchDate = null) {
@@ -58,6 +63,10 @@ export class SpendService {
       ref => ref.orderByChild('createDate')
                 .startAt(searchDate.startAt)
                 .endAt(searchDate.endAt));
+  }
+
+  getFixedSpendList(searchDate = null) {
+    return this.db.list<Spend>('fixed_spend', ref => ref.orderByChild('createDate'));
   }
 
   /**
