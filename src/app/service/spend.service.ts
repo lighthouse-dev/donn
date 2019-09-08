@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Spend } from '../model/spend';
 import store from '../store/spendType';
+import * as Const from '../shared/data.service';
 
 // Service
 import { AuthService } from '../core/auth.service';
@@ -10,12 +11,12 @@ import * as _moment from 'moment';
 const moment = _moment;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SpendService {
-  private spendPublicListRef  = this.db.list<Spend>('public_spend', ref => ref.orderByChild('createDate'));
-  private spendPrivateListRef = this.db.list<Spend>('private_spend/' + this.authService.uid, ref => ref.orderByChild('createDate'));
-  private fixedSpendListRef   = this.db.list<Spend>('fixed_spend', ref => ref.orderByChild('amount'));
+  private spendPublicListRef  = this.db.list<Spend>(Const.dbList.public, ref => ref.orderByChild('createDate'));
+  private spendPrivateListRef = this.db.list<Spend>(Const.dbList.private + this.authService.uid, ref => ref.orderByChild('createDate'));
+  private fixedSpendListRef   = this.db.list<Spend>(Const.dbList.fixed, ref => ref.orderByChild('amount'));
 
   constructor(
     private db: AngularFireDatabase,
@@ -49,7 +50,7 @@ export class SpendService {
   getPublicSpendList(searchDate = null) {
     searchDate = (!searchDate) ? this.getSearchDate() : this.getSearchDate(searchDate);
 
-    return this.db.list<Spend>('public_spend',
+    return this.db.list<Spend>(Const.dbList.public,
       ref => ref.orderByChild('createDate')
                 .startAt(searchDate.startAt)
                 .endAt(searchDate.endAt));
@@ -59,14 +60,14 @@ export class SpendService {
   getPrivateSpendList(searchDate = null) {
     searchDate = (!searchDate) ? this.getSearchDate() : this.getSearchDate(searchDate);
 
-    return this.db.list<Spend>('private_spend/' + this.authService.uid,
+    return this.db.list<Spend>(Const.dbList.private + this.authService.uid,
       ref => ref.orderByChild('createDate')
                 .startAt(searchDate.startAt)
                 .endAt(searchDate.endAt));
   }
 
   getFixedSpendList(searchDate = null) {
-    return this.db.list<Spend>('fixed_spend', ref => ref.orderByChild('createDate'));
+    return this.db.list<Spend>(Const.dbList.fixed, ref => ref.orderByChild('createDate'));
   }
 
   /**
@@ -80,14 +81,14 @@ export class SpendService {
 
     // Public
     if (store.isPublic) {
-      return this.db.list<Spend>('public_spend',
+      return this.db.list<Spend>(Const.dbList.public,
         ref => ref.orderByChild('createDate')
                   .startAt(searchDate.startAt)
                   .endAt(searchDate.endAt));
     }
 
     // Private
-    return this.db.list<Spend>('private_spend/' + this.authService.uid,
+    return this.db.list<Spend>(Const.dbList.private + this.authService.uid,
       ref => ref.orderByChild('createDate')
                 .startAt(searchDate.startAt)
                 .endAt(searchDate.endAt));
@@ -103,9 +104,15 @@ export class SpendService {
    */
   deleteSpend(deleteKey: any) {
     if (store.isPublic) {
-      return this.db.list<Spend>('public_spend/' + deleteKey).remove();
+      return this.db.list<Spend>(Const.dbList.public + deleteKey).remove();
     }
-    return this.db.list<Spend>('private_spend/' + this.authService.uid + '/' + deleteKey).remove();
+
+    return this.db.list<Spend>(
+      Const.dbList.private +
+      this.authService.uid +
+      Const.common.pathDevider +
+      deleteKey
+    ).remove();
   }
 
   // TODO: 関数名を全体的に修正 - index(), add(), edit() delete()
@@ -119,19 +126,19 @@ export class SpendService {
    */
   editSpend(editKey: any, spend: Spend) {
     if (store.isPublic) {
-      return this.db.list<Spend>('public_spend/').update(editKey, spend);
+      return this.db.list<Spend>(Const.dbList.public).update(editKey, spend);
     }
-    return this.db.list<Spend>('private_spend/' + this.authService.uid).update(editKey, spend);
+    return this.db.list<Spend>(Const.dbList.private + this.authService.uid).update(editKey, spend);
   }
 
   /**
    * 固定支出編集
-   * 
-   * @param editKey 
-   * @param spend 
+   *
+   * @param editKey
+   * @param spend
    */
   editFixedSpend(editKey: any, spend: Spend) {
-    return this.db.list<Spend>('fixed_spend/').update(editKey, spend);
+    return this.db.list<Spend>(Const.dbList.fixed).update(editKey, spend);
   }
 
   /**
@@ -145,13 +152,13 @@ export class SpendService {
     if (!searchDate) {
       return {
         startAt: moment().startOf('month').date(25).subtract(1, 'month').toISOString(),
-        endAt: moment().endOf('month').date(24).toISOString()
+        endAt: moment().endOf('month').date(24).toISOString(),
       };
     }
 
     return {
       startAt: moment(searchDate).startOf('month').date(25).subtract(1, 'month').toISOString(),
-      endAt: moment(searchDate).endOf('month').date(24).toISOString()
+      endAt: moment(searchDate).endOf('month').date(24).toISOString(),
     };
   }
 }

@@ -51,3 +51,13 @@ export const privateCategory: Category[] = [
   { value: PRIVATE_CATEGORY_BEAUTY,       viewValue: PRIVATE_CATEGORY_LIST[PRIVATE_CATEGORY_BEAUTY] },
   { value: PRIVATE_CATEGORY_ETC,          viewValue: PRIVATE_CATEGORY_LIST[PRIVATE_CATEGORY_ETC] },
 ];
+
+export enum dbList {
+  public  = 'public_spend/',
+  private =  'private_spend/',
+  fixed   = 'fixed_spend/',
+}
+
+export enum common {
+  pathDevider = '/',
+}
