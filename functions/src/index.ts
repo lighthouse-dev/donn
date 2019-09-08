@@ -16,12 +16,12 @@ const messagingSendToDevice = (payload) => {
             console.log("Sent Successfully", res);
           })
           .catch(err => {
-            console.log(err);
+            console.error(err);
           });
       });
     })
     .catch(err => {
-      console.log(err);
+      console.error(err);
     });
 };
 
@@ -80,4 +80,36 @@ export const monthlyPushSpend = functions.pubsub.topic('monthly-push-spend').onP
   };
 
   messagingSendToDevice(payload);
+});
+
+export const addFixedSpendData = functions.pubsub.topic('add-fixed-spend').onPublish(() => {
+  // 固定支出データを取得
+  admin.database()
+    .ref('/fixed_spend/')
+    .once('value')
+    .then( fixedSpend => {
+      const fixedSpendList = (fixedSpend.val()) || '';
+
+      // 固定支出データ入力
+      Object.keys(fixedSpendList).map(function(key, index) {
+        fixedSpendList[key]['createDate'] = new Date().toISOString();
+        delete fixedSpendList[key]['uid'];
+        admin.database().ref('/public_spend/').push(fixedSpendList[key]).then(() => {
+          console.log('固定支出「' + fixedSpendList[key]['memo'] + '」入力成功')
+        });
+      });
+
+      // Push
+      const payload = {
+        notification: {
+          title: 'お知らせ🐧',
+          body: '今月の固定支出を入力しました！💸',
+          clickAction: "https://donn-a0b1c.firebaseapp.com/spend-list?isPublic=true",
+          icon: "https://user-images.githubusercontent.com/33277426/45892904-7bbe0f00-be04-11e8-8780-940767b3dddb.png"
+        }
+      };
+      messagingSendToDevice(payload);
+    }).catch(err => {
+      console.error(err);
+    });
 });

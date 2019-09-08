@@ -24,14 +24,14 @@ export const PUBLIC_CATEGORY_LIST = {
   [PUBLIC_CATEGORY_HOUSE]: '住まい',
   [PUBLIC_CATEGORY_DINE_OUT]: '外食',
   [PUBLIC_CATEGORY_HOBBY]: '本・趣味',
-  [PUBLIC_CATEGORY_ETC]: 'その他'
+  [PUBLIC_CATEGORY_ETC]: 'その他',
 };
 
 export const PRIVATE_CATEGORY_LIST = {
   [PRIVATE_CATEGORY_FOOD]: '食費',
   [PRIVATE_CATEGORY_RELATIINSHIP]: '交際',
   [PRIVATE_CATEGORY_BEAUTY]: '服・美容',
-  [PRIVATE_CATEGORY_ETC]: 'その他'
+  [PRIVATE_CATEGORY_ETC]: 'その他',
 };
 
 export const publicCategory: Category[] = [
