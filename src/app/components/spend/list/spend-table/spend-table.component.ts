@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, ViewChild, OnChanges } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, MatSort } from '@angular/material';
-import store from '../../../../../store/spendType';
+import store from '../../../../store/spendType';
 
 @Component({
   selector: 'app-spend-table',

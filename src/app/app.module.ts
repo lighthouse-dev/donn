@@ -33,7 +33,7 @@ import { ComputeSumByCategoryPipe } from './shared/category.pipe';
 // Component
 import { AppComponent } from './app.component';
 import { SpendListComponent } from './components/spend/list/spend-list.component';
-import { SpendTableComponent } from './components/spend/list/common/spend-table/spend-table.component';
+import { SpendTableComponent } from './components/spend/list/spend-table/spend-table.component';
 import { EditSpendComponent } from './components/spend/edit/edit-spend.component';
 import { BottomSheetComponent } from './components/common/bottom-sheet/bottom-sheet.component';
 import { DeleteSpendDialogComponent } from './components/common/bottom-sheet/dialog/delete-spend-dialog.component';
