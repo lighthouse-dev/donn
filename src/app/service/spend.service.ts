@@ -169,4 +169,9 @@ export class SpendService {
       endAt: moment(searchDate).endOf('month').date(24).toISOString(),
     };
   }
+
+  autoCompleteFilter = (opt: string[], value: string): string[] => {
+    const filterValue = value.toLowerCase();
+    return opt.filter(item => item.toLowerCase().indexOf(filterValue) === 0);
+  }
 }

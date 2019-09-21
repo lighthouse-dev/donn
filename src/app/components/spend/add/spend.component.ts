@@ -4,25 +4,32 @@ import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl } from
 import { SpendService } from '../../../service/spend.service';
 import { AuthService } from '../../../core/auth.service';
 import { Spend } from '../../../model/spend';
+import { AutoCompleteMemo } from '../../../model/autoCompleteMemo';
 import { AlertMessageComponent } from '../../common/alert-message/alert-message.component';
+import { Observable } from 'rxjs';
+import { startWith, map } from 'rxjs/operators';
 import store from '../../../store/spendType';
 import * as Const from '../../../shared/data.service';
 
 @Component({
   selector: 'app-spend',
   templateUrl: './spend.component.html',
-  styleUrls: ['./spend.component.scss']
+  styleUrls: ['./spend.component.scss'],
 })
 export class SpendComponent {
   spendForm: FormGroup;
   spend: Spend;
   tabs = [
     { icon: 'home', label: 'Public' },
-    { icon: 'face', label: 'Private' }
+    { icon: 'face', label: 'Private' },
   ];
   storeObj    = store;
   selected    = store.isPublic ? new FormControl(store.publicTapNum) : new FormControl(store.privateTapNum);
   categories  = store.isPublic ? Const.publicCategory : Const.privateCategory;
+
+  // 入力補完
+  autoCompleteMemoGroups: AutoCompleteMemo[] = store.isPublic ? Const.publicAutoCompleteMemo : Const.privateAutoCompleteMemo;
+  autoCompleteMemoGroupOptions: Observable<AutoCompleteMemo[]>;
 
   get spendArray(): AbstractControl | null { return this.spendForm.get('spendArray'); }
 
@@ -35,7 +42,26 @@ export class SpendComponent {
   ) {
     // Form初期化
     this.createSpendForm();
+    this.setAutoCompleteMemoOptions();
     this.storeObj.setShowFooter();
+  }
+
+  /**
+   * メモ入力補完
+   */
+  private setAutoCompleteMemoOptions() {
+    this.autoCompleteMemoGroupOptions = this.spendArray.get([1]).get('memo').valueChanges
+      .pipe(
+        startWith(''),
+        map(value => {
+          if (value) {
+            return this.autoCompleteMemoGroups
+              .map(group => ({letter: group.letter, names: this.spendService.autoCompleteFilter(group.names, value)}))
+              .filter(group => group.names.length > 0);
+          }
+          return this.autoCompleteMemoGroups;
+        })
+      );
   }
 
   createSpendForm() {
@@ -49,7 +75,7 @@ export class SpendComponent {
           amount: ['', [ Validators.required, Validators.min(1), Validators.max(9999999) ] ],
           memo: [''],
         }),
-      ])
+      ]),
     });
   }
 
@@ -60,12 +86,16 @@ export class SpendComponent {
     if (tabChangeEvent === store.privateTapNum) {
       store.setPrivateSpendType();
       this.categories = Const.privateCategory;
+      this.autoCompleteMemoGroups = Const.privateAutoCompleteMemo;
+      this.setAutoCompleteMemoOptions();
       return;
     }
 
     // Select PublicTap
     store.setPublicSpendType();
     this.categories = Const.publicCategory;
+    this.autoCompleteMemoGroups = Const.publicAutoCompleteMemo;
+    this.setAutoCompleteMemoOptions();
   }
 
   save(spend, isContinueAdd = false, stepper = null) {
@@ -74,7 +104,7 @@ export class SpendComponent {
       category: spend['spendArray']['0']['category'],
       createDate: spend['spendArray']['1']['date'].toISOString(),
       amount: spend['spendArray']['1']['amount'],
-      memo: spend['spendArray']['1']['memo']
+      memo: spend['spendArray']['1']['memo'],
     };
 
     this.spendService.addSpend(this.spend)

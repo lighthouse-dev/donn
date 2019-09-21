@@ -1,5 +1,15 @@
 import { Category } from '../model/category';
 
+export enum dbList {
+  public  = 'public_spend/',
+  private =  'private_spend/',
+  fixed   = 'fixed_spend/',
+}
+
+export enum common {
+  pathDevider = '/',
+}
+
 // Public Cost
 const PUBLIC_CATEGORY_FOOD              = 10;
 const PUBLIC_CATEGORY_DAILY_NECESSITIES = 11;
@@ -52,12 +62,14 @@ export const privateCategory: Category[] = [
   { value: PRIVATE_CATEGORY_ETC,          viewValue: PRIVATE_CATEGORY_LIST[PRIVATE_CATEGORY_ETC] },
 ];
 
-export enum dbList {
-  public  = 'public_spend/',
-  private =  'private_spend/',
-  fixed   = 'fixed_spend/',
-}
+export const privateAutoCompleteMemo = [
+  { letter: '食費', names: [ 'ランチ 🍙', 'コンビニ 🏪', '朝ごはん 🍰', 'コーヒー ☕️', ] },
+  { letter: '交際', names: ['飲み会 🍻'] },
+  { letter: '服・美容', names: ['美容室 💈', '服 👕'] },
+];
 
-export enum common {
-  pathDevider = '/',
-}
+export const publicAutoCompleteMemo = [
+  { letter: '食費', names: ['スーパー 🛒', 'コンビニ 🏪'] },
+  { letter: '交際', names: ['飲み会 🍻'] },
+  { letter: 'その他', names: ['病院 🏥'] },
+];

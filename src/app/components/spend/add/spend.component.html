@@ -77,14 +77,23 @@
             </mat-form-field>
             <mat-form-field>
               <mat-label><mat-icon>create</mat-icon> メモ </mat-label>
-              <textarea
+              <input
                 matInput
+                type="text"
+                placeholder="メモを入力してください"
+                formControlName="memo"
                 (focus)="storeObj.setHiddenFooter()"
                 (focusout)="storeObj.setShowFooter()"
-                formControlName="memo"
-                placeholder="メモを入力してください"
+                [matAutocomplete]="autoGroup"
               >
-              </textarea>
+              <mat-autocomplete #autoGroup="matAutocomplete">
+                <mat-optgroup
+                  *ngFor="let group of autoCompleteMemoGroupOptions | async"
+                  [label]="group.letter"
+                >
+                  <mat-option *ngFor="let name of group.names" [value]="name"> {{name}} </mat-option>
+                </mat-optgroup>
+              </mat-autocomplete>
             </mat-form-field>
             <p>
               <button
