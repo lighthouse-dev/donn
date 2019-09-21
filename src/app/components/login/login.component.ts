@@ -7,7 +7,7 @@ import { AlertMessageComponent } from '../common/alert-message/alert-message.com
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
 
@@ -26,7 +26,7 @@ export class LoginComponent {
   createForm() {
     this.loginForm = this.fb.group({
       email: ['', Validators.required ],
-      password: ['', Validators.required ]
+      password: ['', Validators.required ],
     });
   }
 
@@ -37,7 +37,7 @@ export class LoginComponent {
       this.router.navigate(['/spend']);
       this.alertMessageComponent.openSnackBar('ログインに成功しました ✌️');
     }, err => {
-      console.log(err);
+      console.error(err);
       this.errorMessage = err.message;
       this.alertMessageComponent.openSnackBar('ログインに失敗しました 😱');
     });

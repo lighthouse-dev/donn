@@ -33,7 +33,7 @@
   <router-outlet></router-outlet>
 </main>
 <mat-toolbar
-  *ngIf="storeObj.isShowFooter"
+  *ngIf="storeObj.isShowFooter && authService.uid"
   color="primary"
   class="footer"
 >
