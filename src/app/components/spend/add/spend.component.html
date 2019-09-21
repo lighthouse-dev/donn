@@ -63,7 +63,7 @@
                 id="amount-input"
                 class="textAlignRight"
                 (focus)="storeObj.setHiddenFooter()"
-                (focusout)="storeObj.setShowFooter()"
+                (blur)="storeObj.setShowFooter()"
                 autocomplete="off"
                 placeholder="金額を入力してください"
               >
@@ -83,7 +83,7 @@
                 placeholder="メモを入力してください"
                 formControlName="memo"
                 (focus)="storeObj.setHiddenFooter()"
-                (focusout)="storeObj.setShowFooter()"
+                (blur)="storeObj.setShowFooter()"
                 [matAutocomplete]="autoGroup"
               >
               <mat-autocomplete #autoGroup="matAutocomplete">
