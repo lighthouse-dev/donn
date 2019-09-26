@@ -157,21 +157,35 @@ export class SpendService {
    * @param searchDate
    */
   getSearchDate(searchDate = null) {
-    if (!searchDate) {
+    if (searchDate) {
       return {
-        startAt: moment().startOf('month').date(25).subtract(1, 'month').toISOString(),
-        endAt: moment().endOf('month').date(24).toISOString(),
+        startAt: moment(searchDate).startOf('month').date(25).subtract(1, 'month').toISOString(),
+        endAt: moment(searchDate).endOf('month').date(24).toISOString(),
       };
     }
 
+    if (moment().date() >= 25) {
+      return {
+        startAt: moment().startOf('month').date(25).toISOString(),
+        endAt: moment().endOf('month').date(24).add(1, 'month').toISOString(),
+      };
+    }
     return {
-      startAt: moment(searchDate).startOf('month').date(25).subtract(1, 'month').toISOString(),
-      endAt: moment(searchDate).endOf('month').date(24).toISOString(),
+      startAt: moment().startOf('month').date(25).subtract(1, 'month').toISOString(),
+      endAt: moment().endOf('month').date(24).toISOString(),
     };
   }
 
   autoCompleteFilter = (opt: string[], value: string): string[] => {
     const filterValue = value.toLowerCase();
     return opt.filter(item => item.toLowerCase().indexOf(filterValue) === 0);
+  }
+
+  /**
+   * 初期表示時に、選択する月を判定
+   *  例：本日の日付が 9/25だとすると、10月に選択された状態で表示する
+   */
+  getInitSelectedMonth = () => {
+    return moment().date() >= 25 ? moment().add(1, 'month') : moment();
   }
 }

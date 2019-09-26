@@ -29,7 +29,6 @@ export const MY_FORMATS = {
   },
 };
 
-
 @Component({
   selector: 'app-spend-list',
   templateUrl: './spend-list.component.html',
@@ -43,14 +42,14 @@ export class SpendListComponent {
   selectedTab = store.isPublic ? store.publicTapNum : store.privateTapNum;
   tabs = [
     { icon: 'home', label: 'Public' },
-    { icon: 'face', label: 'Private' }
+    { icon: 'face', label: 'Private' },
   ];
 
   spendTempList:    Spend[];
   spendPublicList:  Spend[];
   spendPrivateList: Spend[];
 
-  searchMonth = new FormControl(moment());
+  searchMonth = new FormControl(this.spendService.getInitSelectedMonth());
   resultsLength: Number = 0;
   totalAmount: Number   = 0;
   storeObj = store;
@@ -99,7 +98,7 @@ export class SpendListComponent {
     }
 
     // 検索対象月をリセット
-    this.searchMonth.setValue(moment());
+    this.searchMonth.setValue(this.spendService.getInitSelectedMonth());
 
     // 支出リストを再取得
     this.getSpendList();

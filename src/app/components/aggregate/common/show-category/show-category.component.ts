@@ -50,7 +50,7 @@ export class ShowCategoryComponent implements OnInit {
   spendListByCategory = [];
   totalAmount: Number = 0;
   categorySum: any = [];
-  searchMonth = new FormControl(moment());
+  searchMonth = new FormControl(this.spendService.getInitSelectedMonth());
 
   constructor(
     private spendService: SpendService,
