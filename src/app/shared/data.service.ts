@@ -121,6 +121,7 @@ export const privateAutoCompleteMemo = [
 
 export const publicAutoCompleteMemo = [
   { letter: '食費', names: ['スーパー 🛒', 'コンビニ 🏪'] },
+  { letter: '日用品', names: ['100円ショップ ✨', '薬局 💊'] },
   { letter: '交際', names: ['飲み会 🍻'] },
   { letter: 'その他', names: ['病院 🏥'] },
 ];
