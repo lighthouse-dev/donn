@@ -6,18 +6,24 @@ import * as firebase from 'firebase';
 import 'firebase/messaging';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MessagingService {
   messaging = firebase.messaging();
   currentMessage = new BehaviorSubject(null);
-  constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
+
+  constructor(
+    private db: AngularFireDatabase,
+    private afAuth: AngularFireAuth
+  ) {
     // Add the public key generated from the console here.
-    this.messaging.usePublicVapidKey('BNrR721Wd9x1252B91V4rYwmbZZ6nZ6Xx1KpbjZYHGqh5IyQq7pD9N5QaMt9dakfvslW1VmUFEjTiOnsZozd_Sg');
+    this.messaging.usePublicVapidKey(
+      'BNrR721Wd9x1252B91V4rYwmbZZ6nZ6Xx1KpbjZYHGqh5IyQq7pD9N5QaMt9dakfvslW1VmUFEjTiOnsZozd_Sg'
+    );
   }
 
   updateToken(token) {
-    this.afAuth.authState.subscribe(user => {
+    this.afAuth.authState.subscribe((user) => {
       if (!user) {
         return;
       }
@@ -28,12 +34,13 @@ export class MessagingService {
   }
 
   getPermission() {
-    this.messaging.requestPermission()
+    this.messaging
+      .requestPermission()
       .then(() => {
         console.log('Notification permission granted.');
         return this.messaging.getToken();
       })
-      .then(token => {
+      .then((token) => {
         console.log(token);
         this.updateToken(token);
       })
