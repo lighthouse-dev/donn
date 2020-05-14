@@ -1,11 +1,12 @@
 <mat-tab-group
   [selectedIndex]="selected.value"
   (selectedIndexChange)="tabChanged($event)"
-  backgroundColor="primary">
-
+  backgroundColor="primary"
+>
   <mat-tab *ngFor="let tab of tabs; let index = index">
     <ng-template mat-tab-label>
-      <mat-icon>{{tab.icon}}</mat-icon>　{{tab.label}}
+      <mat-icon>{{ tab.icon }}</mat-icon>
+      {{ tab.label }}
     </ng-template>
     <div class="spend-container">
       <form [formGroup]="spendForm">
@@ -13,17 +14,20 @@
           #linearVerticalStepper="matVerticalStepper"
           formArrayName="spendArray"
           class="mat-elevation-z8"
-          linear>
+          linear
+        >
           <mat-step
             label="カテゴリー"
             formGroupName="0"
-            [stepControl]="spendArray.get([0])">
+            [stepControl]="spendArray.get([0])"
+          >
             <mat-radio-group class="radio-group" formControlName="category">
               <mat-radio-button
                 class="radio-button"
                 *ngFor="let category of categories"
                 [value]="category.value"
-                (click)="nextStep(linearVerticalStepper)">
+                (click)="nextStep(linearVerticalStepper)"
+              >
                 {{ category.viewValue }}
               </mat-radio-button>
             </mat-radio-group>
@@ -33,15 +37,22 @@
                 color="primary"
                 matStepperNext
                 type="button"
-                [disabled]="spendArray.get([0]).invalid"> 次へ </button>
+                [disabled]="spendArray.get([0]).invalid"
+              >
+                次へ
+              </button>
             </p>
           </mat-step>
           <mat-step
             label="支出情報"
             formGroupName="1"
-            [stepControl]="spendArray.get([1])">
+            [stepControl]="spendArray.get([1])"
+          >
             <mat-form-field appearance="outline">
-              <mat-label><mat-icon>date_range</mat-icon> 日付 </mat-label>
+              <mat-label>
+                <mat-icon>date_range</mat-icon>
+                日付
+              </mat-label>
               <input
                 matInput
                 [matDatepicker]="date"
@@ -50,12 +61,15 @@
                 placeholder="日付を選択してください"
                 readonly
               />
-              <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="date"
+              ></mat-datepicker-toggle>
               <mat-datepicker touchUi #date></mat-datepicker>
-              <mat-error> 日付を選択してください </mat-error>
+              <mat-error>日付を選択してください</mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">
-              <mat-label> 金額 </mat-label>
+              <mat-label>金額</mat-label>
               <input
                 matInput
                 type="number"
@@ -66,17 +80,18 @@
                 (blur)="storeObj.setShowFooter()"
                 autocomplete="off"
                 placeholder="金額を入力してください"
-              >
-              <span
-                matSuffix
-                class="float-left"
-              > &nbsp;&nbsp;¥ </span>
+              />
+              <span matSuffix class="float-left">&nbsp;&nbsp;¥</span>
               <mat-error>
-                <strong>数字のみ</strong>(1~9999999) 入力してください
+                <strong>数字のみ</strong>
+                (1~9999999) 入力してください
               </mat-error>
             </mat-form-field>
             <mat-form-field>
-              <mat-label><mat-icon>create</mat-icon> メモ </mat-label>
+              <mat-label>
+                <mat-icon>create</mat-icon>
+                メモ
+              </mat-label>
               <input
                 matInput
                 type="text"
@@ -85,13 +100,15 @@
                 (focus)="storeObj.setHiddenFooter()"
                 (blur)="storeObj.setShowFooter()"
                 [matAutocomplete]="autoGroup"
-              >
+              />
               <mat-autocomplete #autoGroup="matAutocomplete">
                 <mat-optgroup
-                  *ngFor="let group of autoCompleteMemoGroupOptions | async"
+                  *ngFor="let group of (autoCompleteMemoGroupOptions | async)"
                   [label]="group.letter"
                 >
-                  <mat-option *ngFor="let name of group.names" [value]="name"> {{name}} </mat-option>
+                  <mat-option *ngFor="let name of group.names" [value]="name">
+                    {{ name }}
+                  </mat-option>
                 </mat-optgroup>
               </mat-autocomplete>
             </mat-form-field>
@@ -102,16 +119,24 @@
                 class="btn btn-default continue-add-btn"
                 color="primary"
                 (click)="save(spendForm.value, true, linearVerticalStepper)"
-                [disabled]="spendArray.get([0]).invalid || spendArray.get([1]).invalid"
-              > 続けて登録 </button>
+                [disabled]="
+                  spendArray.get([0]).invalid || spendArray.get([1]).invalid
+                "
+              >
+                続けて登録
+              </button>
               <button
                 type="submit"
                 mat-raised-button
                 class="btn btn-default add-btn"
                 color="primary"
                 (click)="save(spendForm.value)"
-                [disabled]="spendArray.get([0]).invalid || spendArray.get([1]).invalid"
-              > 登録 </button>
+                [disabled]="
+                  spendArray.get([0]).invalid || spendArray.get([1]).invalid
+                "
+              >
+                登録
+              </button>
             </p>
           </mat-step>
         </mat-vertical-stepper>

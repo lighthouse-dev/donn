@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  Validators,
+  AbstractControl
+} from '@angular/forms';
 import { SpendService } from '../../../service/spend.service';
 import { AuthService } from '../../../core/auth.service';
 import { Spend } from '../../../model/spend';
@@ -14,24 +20,30 @@ import * as Const from '../../../shared/data.service';
 @Component({
   selector: 'app-spend',
   templateUrl: './spend.component.html',
-  styleUrls: ['./spend.component.scss'],
+  styleUrls: ['./spend.component.scss']
 })
 export class SpendComponent {
   spendForm: FormGroup;
   spend: Spend;
   tabs = [
     { icon: 'home', label: 'Public' },
-    { icon: 'face', label: 'Private' },
+    { icon: 'face', label: 'Private' }
   ];
-  storeObj    = store;
-  selected    = store.isPublic ? new FormControl(store.publicTapNum) : new FormControl(store.privateTapNum);
-  categories  = store.isPublic ? Const.publicCategory : Const.privateCategory;
+  storeObj = store;
+  selected = store.isPublic
+    ? new FormControl(store.publicTapNum)
+    : new FormControl(store.privateTapNum);
+  categories = store.isPublic ? Const.publicCategory : Const.privateCategory;
 
   // 入力補完
-  autoCompleteMemoGroups: AutoCompleteMemo[] = store.isPublic ? Const.publicAutoCompleteMemo : Const.privateAutoCompleteMemo;
+  autoCompleteMemoGroups: AutoCompleteMemo[] = store.isPublic
+    ? Const.publicAutoCompleteMemo
+    : Const.privateAutoCompleteMemo;
   autoCompleteMemoGroupOptions: Observable<AutoCompleteMemo[]>;
 
-  get spendArray(): AbstractControl | null { return this.spendForm.get('spendArray'); }
+  get spendArray(): AbstractControl | null {
+    return this.spendForm.get('spendArray');
+  }
 
   constructor(
     private fb: FormBuilder,
@@ -50,14 +62,19 @@ export class SpendComponent {
    * メモ入力補完
    */
   private setAutoCompleteMemoOptions() {
-    this.autoCompleteMemoGroupOptions = this.spendArray.get([1]).get('memo').valueChanges
-      .pipe(
+    this.autoCompleteMemoGroupOptions = this.spendArray
+      .get([1])
+      .get('memo')
+      .valueChanges.pipe(
         startWith(''),
-        map(value => {
+        map((value) => {
           if (value) {
             return this.autoCompleteMemoGroups
-              .map(group => ({letter: group.letter, names: this.spendService.autoCompleteFilter(group.names, value)}))
-              .filter(group => group.names.length > 0);
+              .map((group) => ({
+                letter: group.letter,
+                names: this.spendService.autoCompleteFilter(group.names, value)
+              }))
+              .filter((group) => group.names.length > 0);
           }
           return this.autoCompleteMemoGroups;
         })
@@ -68,14 +85,17 @@ export class SpendComponent {
     this.spendForm = this.fb.group({
       spendArray: this.fb.array([
         this.fb.group({
-          category: ['', Validators.required ],
+          category: ['', Validators.required]
         }),
         this.fb.group({
-          date: [ new Date(), Validators.required ],
-          amount: ['', [ Validators.required, Validators.min(1), Validators.max(9999999) ] ],
-          memo: [''],
-        }),
-      ]),
+          date: [new Date(), Validators.required],
+          amount: [
+            '',
+            [Validators.required, Validators.min(1), Validators.max(9999999)]
+          ],
+          memo: ['']
+        })
+      ])
     });
   }
 
@@ -96,7 +116,7 @@ export class SpendComponent {
     this.categories = Const.publicCategory;
     this.autoCompleteMemoGroups = Const.publicAutoCompleteMemo;
     this.setAutoCompleteMemoOptions();
-  }
+  };
 
   save(spend, isContinueAdd = false, stepper = null) {
     this.spend = {
@@ -104,20 +124,21 @@ export class SpendComponent {
       category: spend['spendArray']['0']['category'],
       createDate: spend['spendArray']['1']['date'].toISOString(),
       amount: spend['spendArray']['1']['amount'],
-      memo: spend['spendArray']['1']['memo'],
+      memo: spend['spendArray']['1']['memo']
     };
 
-    this.spendService.addSpend(this.spend)
-      .then(ref => {
-        if (isContinueAdd) { // 続けて登録
-          stepper.reset();
-          this.createSpendForm(); // Form初期化
-        } else { // 通常登録
-          this.router.navigate(['/spend-list']);
-        }
+    this.spendService.addSpend(this.spend).then(() => {
+      if (isContinueAdd) {
+        // 続けて登録
+        stepper.reset();
+        this.createSpendForm(); // Form初期化
+      } else {
+        // 通常登録
+        this.router.navigate(['/spend-list']);
+      }
 
-        this.alertMessageComponent.openSnackBar('支出を入力しました 💰');
-      });
+      this.alertMessageComponent.openSnackBar('支出を入力しました 💰');
+    });
   }
 
   /**
