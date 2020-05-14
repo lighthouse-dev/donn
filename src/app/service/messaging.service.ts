@@ -9,13 +9,16 @@ import 'firebase/messaging';
   providedIn: 'root',
 })
 export class MessagingService {
-  messaging = firebase.messaging();
+  messaging = firebase.messaging.isSupported() ? firebase.messaging() : null;
   currentMessage = new BehaviorSubject(null);
 
   constructor(
     private db: AngularFireDatabase,
     private afAuth: AngularFireAuth
   ) {
+    if (!this.messaging) {
+      return;
+    }
     // Add the public key generated from the console here.
     this.messaging.usePublicVapidKey(
       'BNrR721Wd9x1252B91V4rYwmbZZ6nZ6Xx1KpbjZYHGqh5IyQq7pD9N5QaMt9dakfvslW1VmUFEjTiOnsZozd_Sg'
