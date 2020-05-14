@@ -2,18 +2,26 @@
   <form [formGroup]="spendForm">
     <p>
       <mat-form-field appearance="outline">
-        <mat-label><mat-icon>category</mat-icon> カテゴリー </mat-label>
+        <mat-label>
+          <mat-icon>category</mat-icon>
+          カテゴリー
+        </mat-label>
         <mat-select formControlName="category">
           <mat-option
             *ngFor="let category of categories"
-            [value]="category.value"> {{category.viewValue}}
+            [value]="category.value"
+          >
+            {{ category.viewValue }}
           </mat-option>
         </mat-select>
       </mat-form-field>
     </p>
     <p>
       <mat-form-field appearance="outline">
-        <mat-label><mat-icon>attach_money</mat-icon> 金額 </mat-label>
+        <mat-label>
+          <mat-icon>attach_money</mat-icon>
+          金額
+        </mat-label>
         <input
           matInput
           type="number"
@@ -24,16 +32,16 @@
           autocomplete="off"
           placeholder="金額を入力してください"
         />
-        <span
-          matSuffix
-          class="float-left"
-        > &nbsp;&nbsp;¥ </span>
-        <mat-error> 1以上の数字を入力してください </mat-error>
+        <span matSuffix class="float-left">&nbsp;&nbsp;¥</span>
+        <mat-error>1以上の数字を入力してください</mat-error>
       </mat-form-field>
     </p>
     <p>
       <mat-form-field appearance="outline">
-        <mat-label><mat-icon>create</mat-icon> メモ </mat-label>
+        <mat-label>
+          <mat-icon>create</mat-icon>
+          メモ
+        </mat-label>
         <textarea
           matInput
           formControlName="memo"
@@ -46,12 +54,15 @@
   </form>
 </mat-dialog-content>
 <mat-dialog-actions class="center">
-  <button mat-raised-button mat-dialog-close> キャンセル </button>
+  <button mat-raised-button mat-dialog-close>キャンセル</button>
   <button
     type="submit"
-    mat-raised-button color="primary"
-    (click)="edit(spendForm.value)"
+    mat-raised-button
+    color="primary"
+    (mousedown)="edit(spendForm.value)"
     class="btn btn-default"
     [disabled]="spendForm.invalid"
-  > 更新 </button>
+  >
+    更新
+  </button>
 </mat-dialog-actions>

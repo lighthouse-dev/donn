@@ -118,7 +118,7 @@
                 mat-button
                 class="btn btn-default continue-add-btn"
                 color="primary"
-                (click)="save(spendForm.value, true, linearVerticalStepper)"
+                (mousedown)="save(spendForm.value, true, linearVerticalStepper)"
                 [disabled]="
                   spendArray.get([0]).invalid || spendArray.get([1]).invalid
                 "
@@ -130,7 +130,7 @@
                 mat-raised-button
                 class="btn btn-default add-btn"
                 color="primary"
-                (click)="save(spendForm.value)"
+                (mousedown)="save(spendForm.value)"
                 [disabled]="
                   spendArray.get([0]).invalid || spendArray.get([1]).invalid
                 "
