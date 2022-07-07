@@ -34,7 +34,7 @@
 		"chartjs-plugin-datalabels": "^0.4.0",
 		"core-js": "^2.5.4",
 		"firebase": "^5.5.4",
-		"moment": "^2.22.2",
+		"moment": "^2.29.4",
 		"rxjs": "^6.0.0",
 		"rxjs-compat": "^6.2.2",
 		"zone.js": "~0.8.26"
